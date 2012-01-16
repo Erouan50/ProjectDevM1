@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-/Android/youfood-android/target
-/Android/youfood-android/.classpath
-/Android/youfood-android/.project
-/Android/youfood-android/.settings
-/Android/youfood-android/.idea
-/Android/youfood-android/youfood-android.iml
-/Android/youfood-android/youfood-android.eml
-/Android/youfood-android/bin
-/Android/youfood-android/gen
-=======
 /.idea
 /YouFood.iml
 /out
@@ -27,4 +15,3 @@
 /youfood-android/youfood-android.eml
 /youfood-android/bin
 /youfood-android/gen
->>>>>>> Update project structure.
