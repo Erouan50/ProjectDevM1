@@ -17,5 +17,10 @@
             <artifactId>vaadin</artifactId>
             <version>6.7.3</version>
         </dependency>
+        <dependency>
+            <artifactId>servlet-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
 </project>

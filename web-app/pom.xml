@@ -11,12 +11,12 @@
     </parent>
     <artifactId>web-app</artifactId>
     <dependencies>
-        <!--<dependency>
+        <dependency>
             <groupId>org.youfood</groupId>
             <artifactId>web-site</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.youfood</groupId>
             <artifactId>web-services</artifactId>
@@ -26,11 +26,6 @@
             <artifactId>jersey-guice</artifactId>
             <groupId>com.sun.jersey.contribs</groupId>
             <version>1.9</version>
-        </dependency>
-        <dependency>
-            <artifactId>servlet-api</artifactId>
-            <groupId>javax.servlet</groupId>
-            <version>2.5</version>
         </dependency>
         <dependency>
             <artifactId>httpunit</artifactId>
@@ -45,6 +40,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
