@@ -23,4 +23,3 @@ public class HelloAndroidActivity extends Activity {
     }
 
 }
-

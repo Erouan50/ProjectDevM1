@@ -6,11 +6,12 @@ import javax.ws.rs.Path;
 /**
  * @author: Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-@Path("helloword")
+
+@Path("helloworld")
 public class HelloWorld {
 
     @GET
-    public String getHelloWorld() {
+    public String test() {
         return "Hello world !";
     }
 }

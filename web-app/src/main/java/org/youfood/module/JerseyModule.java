@@ -16,6 +16,6 @@ public class JerseyModule extends JerseyServletModule {
     protected void configureServlets() {
         LOG.info("Init Jersey module");
         bind(HelloWorld.class);
-        serve("/resource/*").with(GuiceContainer.class);
+        serve("/resources/*").with(GuiceContainer.class);
     }
 }

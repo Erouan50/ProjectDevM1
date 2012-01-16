@@ -2,21 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>youfood</artifactId>
         <groupId>org.youfood</groupId>
+        <artifactId>youfood</artifactId>
         <version>0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>web-services</artifactId>
+    <artifactId>web-site</artifactId>
 
     <dependencies>
         <dependency>
-            <artifactId>jersey-server</artifactId>
-            <groupId>com.sun.jersey</groupId>
-            <version>1.9</version>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin</artifactId>
+            <version>6.7.3</version>
         </dependency>
     </dependencies>
 </project>

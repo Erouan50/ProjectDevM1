@@ -6,7 +6,7 @@
     <artifactId>youfood-android</artifactId>
     <version>0.1</version>
     <packaging>apk</packaging>
-    <name>youfood-android</name>
+    <name>android-app</name>
 
     <dependencies>
         <dependency>
