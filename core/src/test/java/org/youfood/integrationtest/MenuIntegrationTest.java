@@ -15,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.youfood.exception.CoreException;
 import org.youfood.model.Menu;
-import org.youfood.module.JPAModule;
 import org.youfood.module.TestModule;
 import org.youfood.service.MenuService;
 import org.youfood.utils.GuiceJUnitRunner;
