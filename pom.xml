@@ -12,7 +12,7 @@
         <module>web-app</module>
         <module>android-app</module>
         <module>web-services</module>
-        <module>web-site</module>
+        <module>core</module>
     </modules>
 
     <dependencies>
@@ -33,4 +33,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+        <repository>
+            <id>eclipseLink</id>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+        </repository>
+    </repositories>
 </project>
