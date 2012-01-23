@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class WebServiceIntegrationTest {
 
     private static final Logger LOGGER = Logger.getLogger(WebServiceIntegrationTest.class);
-    public static final String URL = "http://localhost:8080/youfood/resources/helloworld/";
+    public static final String URL = "http://localhost:8088/youfood/resources/helloworld/";
 
     private WebConversation webConversation;
 

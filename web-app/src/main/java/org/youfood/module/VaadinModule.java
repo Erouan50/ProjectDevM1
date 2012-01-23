@@ -16,6 +16,7 @@ public class VaadinModule extends ServletModule {
 
     @Override
     protected void configureServlets() {
+//        serveRegex("^/.*", "!^/resources/.*").with(GuiceApplicationServlet.class);
         serve("/*").with(GuiceApplicationServlet.class);
         bind(Application.class).to(MainPage.class);
         bindConstant().annotatedWith(Names.named("welcome")).to("Main page");

@@ -23,6 +23,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.youfood</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <artifactId>jersey-guice</artifactId>
             <groupId>com.sun.jersey.contribs</groupId>
             <version>1.9</version>
@@ -40,12 +45,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>java.net2</id>
-            <url>http://download.java.net/maven/2/</url>
-        </repository>
-    </repositories>
     <build>
         <plugins>
             <plugin>
