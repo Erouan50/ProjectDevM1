@@ -10,16 +10,14 @@ import org.youfood.service.impl.MenuServiceJPA;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class JPAModule extends ServletModule {
+public class JPAModuleServlet extends ServletModule {
 
-    private final static Logger LOGGER = Logger.getLogger(JPAModule.class);
+    private final static Logger LOGGER = Logger.getLogger(JPAModuleServlet.class);
 
     @Override
     protected void configureServlets() {
-        LOGGER.info("Init JPAModule");
-        bind(MenuService.class).to(MenuServiceJPA.class);
-
-        install(new JpaPersistModule("YouFood-PU"));
+        LOGGER.info("Init JPAModuleServlet");
+        install(new JPAModule());
         filter("/*").through(PersistFilter.class);
     }
 }

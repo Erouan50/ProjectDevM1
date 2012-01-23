@@ -6,7 +6,7 @@ import com.google.inject.Module;
 import com.google.inject.servlet.GuiceServletContextListener;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import org.youfood.module.JPAModule;
+import org.youfood.module.JPAModuleServlet;
 import org.youfood.module.JerseyModule;
 import org.youfood.module.VaadinModule;
 
@@ -26,8 +26,8 @@ public class YouFoodGuiceServletContextListener extends GuiceServletContextListe
         LOG.info("Init servlet context");
         Set<Module> modules = new HashSet<Module>();
         modules.add(new JerseyModule());
+        modules.add(new JPAModuleServlet());
         modules.add(new VaadinModule());
-        modules.add(new JPAModule());
         return Guice.createInjector(modules);
     }
 }

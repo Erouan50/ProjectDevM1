@@ -6,6 +6,8 @@ import org.youfood.service.MenuService;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -24,6 +26,12 @@ public class MenuServiceJPA implements MenuService {
     @Override
     public Menu getMenuById(Long id) {
         return entityManager.find(Menu.class, id);
+    }
+
+    @Override
+    public List<Menu> getAllMenu() {
+        Query query = entityManager.createNamedQuery("findAllList");
+        return query.getResultList();
     }
 
     @Override
