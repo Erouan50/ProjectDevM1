@@ -58,13 +58,13 @@
                     <contextPath>/youfood</contextPath>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8088</port>
+                            <port>8080</port>
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                     </connectors>
                     <webApp>${basedir}/target/youfood</webApp>
                     <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
-                        <filename>target/yyyy_mm_dd.request.log</filename>
+                        <filename>${basedir}/target/yyyy_mm_dd.request.log</filename>
                         <retainDays>90</retainDays>
                         <append>true</append>
                         <extended>true</extended>
