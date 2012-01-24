@@ -24,3 +24,4 @@
 /web-site/web-site.iml
 /core/core.iml
 /core/target
+/core/src/main/resources/META-INF/persistence.xml
