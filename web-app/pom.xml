@@ -45,31 +45,28 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <build>
+    <!-- <build>
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.21</version>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.0.1.v20091125</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>commons-dbcp</groupId>
+                        <artifactId>commons-dbcp</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
+                    <webAppConfig>
+                        <contextPath>/youfood</contextPath>
+                    </webAppConfig>
+                    <descriptor>src/test/resources/web.xml</descriptor>
                     <stopPort>9966</stopPort>
-                    <stopKey>jetty-stop</stopKey>
+                    <stopKey>stop-jetty</stopKey>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <contextPath>/youfood</contextPath>
-                    <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8080</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
                     <webApp>${basedir}/target/youfood</webApp>
-                    <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
-                        <filename>${basedir}/target/yyyy_mm_dd.request.log</filename>
-                        <retainDays>90</retainDays>
-                        <append>true</append>
-                        <extended>true</extended>
-                        <logTimeZone>GMT</logTimeZone>
-                    </requestLog>
                 </configuration>
                 <executions>
                     <execution>
@@ -83,13 +80,7 @@
                             <daemon>true</daemon>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>stop-jetty</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
+
                 </executions>
             </plugin>
             <plugin>
@@ -117,6 +108,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
-    </build>
+    </build>-->
 </project>
