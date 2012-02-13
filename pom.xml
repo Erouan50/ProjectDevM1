@@ -12,6 +12,7 @@
         <module>web-app</module>
         <module>android-app</module>
         <module>web-services</module>
+        <module>web-site</module>
         <module>core</module>
     </modules>
 
