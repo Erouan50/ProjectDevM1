@@ -1,6 +1,7 @@
 package org.youfood.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -9,46 +10,33 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "findAllList", query = "SELECT m FROM Menu AS m")
 })
-public class Menu {
+@DiscriminatorValue(value = "menu")
+public class Menu extends Article {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
+    @ManyToMany
+    private Collection<Content> contents;
 
-    public Long getId() {
-        return id;
+
+    public Collection<Content> getContents() {
+        return contents;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setContents(Collection<Content> contents) {
+        this.contents = contents;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Menu)) return false;
 
         Menu menu = (Menu) o;
-
-        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
-        if (name != null ? !name.equals(menu.name) : menu.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return contents != null ? contents.hashCode() : 0;
     }
 }

@@ -1,11 +1,8 @@
 package org.youfood.module;
 
 import com.google.inject.persist.PersistFilter;
-import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import org.apache.log4j.Logger;
-import org.youfood.service.MenuService;
-import org.youfood.service.impl.MenuServiceJPA;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>

@@ -5,7 +5,6 @@ import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import org.apache.log4j.Logger;
 import org.youfood.resources.HelloWorld;
 import org.youfood.resources.MenuWebService;
-import org.youfood.service.MenuService;
 
 /**
  * @author: Antoine ROUAZE <antoine.rouaze AT zenika.com>

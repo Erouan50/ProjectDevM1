@@ -5,7 +5,7 @@ import com.google.inject.servlet.ServletModule;
 import com.vaadin.Application;
 import org.apache.log4j.Logger;
 import org.youfood.configuration.GuiceApplicationServlet;
-import org.youfood.pages.MainPage;
+import org.youfood.cook.pages.MainPage;
 
 /**
  * @author: Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -16,10 +16,9 @@ public class VaadinModule extends ServletModule {
 
     @Override
     protected void configureServlets() {
-//        serveRegex("^/.*", "!^/resources/.*").with(GuiceApplicationServlet.class);
         serve("/*").with(GuiceApplicationServlet.class);
         bind(Application.class).to(MainPage.class);
         bindConstant().annotatedWith(Names.named("welcome")).to("Main page");
-        LOGGER.info(getServletContext().getContextPath());
+//        LOGGER.info(getServletContext().getContextPath());
     }
 }

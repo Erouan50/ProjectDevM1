@@ -8,12 +8,11 @@ import com.google.inject.util.Modules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youfood.module.JPAModuleServlet;
-import org.youfood.module.JerseyModule;
-import org.youfood.module.VaadinModule;
+import org.youfood.module.YouFoodModuleLoader;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,13 +23,16 @@ public class YouFoodGuiceServletContextListener extends GuiceServletContextListe
 
     private static final Logger LOG = LoggerFactory.getLogger(YouFoodGuiceServletContextListener.class);
 
+    private YouFoodModuleLoader youFoodModuleLoader;
+
+    public YouFoodGuiceServletContextListener() {
+        youFoodModuleLoader = new YouFoodModuleLoader();
+    }
+
     @Override
     protected Injector getInjector() {
         LOG.info("Init servlet context");
-        Set<Module> modules = new LinkedHashSet<Module>();
-        modules.add(new JerseyModule());
-        modules.add(new JPAModuleServlet());
-        modules.add(new VaadinModule());
+        Set<Module> modules = youFoodModuleLoader.getYouFoodModules();
         return Guice.createInjector(Modules.combine(modules));
     }
 
