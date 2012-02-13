@@ -1,8 +1,8 @@
-package org.youfood.service.impl;
+package org.youfood.dao.jpa;
 
 import com.google.inject.persist.Transactional;
+import org.youfood.dao.MenuDao;
 import org.youfood.model.Menu;
-import org.youfood.service.MenuService;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class MenuServiceJPA implements MenuService {
+public class MenuDaoJPA implements MenuDao {
 
     @Inject
     private EntityManager entityManager;

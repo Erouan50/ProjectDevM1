@@ -1,4 +1,4 @@
-package org.youfood.service;
+package org.youfood.services;
 
 import org.youfood.model.Menu;
 
@@ -12,8 +12,6 @@ public interface MenuService {
     void addMenu(Menu menu);
 
     Menu getMenuById(Long id);
-
-    List<Menu> getAllMenu();
 
     void updateMenu(Menu menu);
 
