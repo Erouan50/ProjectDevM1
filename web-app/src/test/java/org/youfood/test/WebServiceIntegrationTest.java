@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * @author: Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-// TODO: Fix maven jetty plugin error
+// TODO: Fix maven jetty plugin error and move in correct folder !
 @Ignore
 public class WebServiceIntegrationTest {
 

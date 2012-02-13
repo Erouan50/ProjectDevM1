@@ -1,7 +1,7 @@
 package org.youfood.resources;
 
 import org.youfood.model.Menu;
-import org.youfood.service.MenuService;
+import org.youfood.services.MenuService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
