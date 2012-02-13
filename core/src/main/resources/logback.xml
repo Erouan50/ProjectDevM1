@@ -17,7 +17,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.dbunit.*" level="INFO"/>
+    <logger name="org.dbunit" level="WARN"/>
     <logger name="com.google" level="TRACE"/>
     <logger name="com.sun.jersey" level="INFO"/>
     <logger name="org.apache" level="ERROR"/>
