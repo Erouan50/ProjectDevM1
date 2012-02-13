@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-
-<dataset>
-    <menu id='1000' name='pizza'/>
-    <menu id='2000' name='patte'/>
-    <menu id='3000' name='puree'/>
-    <menu id='4000' name='riz'/>
-</dataset>
