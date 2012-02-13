@@ -1,0 +1,9 @@
+@import url(../my-chameleon/styles.css);
+
+.v-button {
+    text-align: center;
+}
+
+.v-button-caption {
+    padding: 50%
+}
