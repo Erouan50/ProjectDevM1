@@ -9,7 +9,7 @@ import javax.inject.Inject;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class JPAControl {
+public class JpaControl {
 
     @Inject
     private PersistService persistService;

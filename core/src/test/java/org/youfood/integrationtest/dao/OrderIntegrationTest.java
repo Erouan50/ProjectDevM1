@@ -15,9 +15,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youfood.dao.MenuDao;
+import org.youfood.dao.OrderDao;
 import org.youfood.exception.CoreException;
-import org.youfood.model.Menu;
+import org.youfood.model.Order;
 import org.youfood.module.TestModule;
 import org.youfood.utils.GuiceJUnitRunner;
 import org.youfood.utils.JpaControl;
@@ -35,64 +35,31 @@ import static org.junit.Assert.*;
  */
 @RunWith(GuiceJUnitRunner.class)
 @GuiceJUnitRunner.GuiceModules({TestModule.class})
-public class MenuIntegrationTest {
+public class OrderIntegrationTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MenuIntegrationTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderIntegrationTest.class);
 
     private static IDataSet dataSet;
 
     @Inject
     private static JpaControl control;
     @Inject
-    private MenuDao menuDao;
+    private OrderDao orderDao;
     @Inject
     private EntityManager em;
 
     @Test
-    public void testAddMenu() {
-        Menu menu = new Menu();
-        menu.setName("sushi");
-        menuDao.addMenu(menu);
-        Menu result = menuDao.getMenuById(menu.getId());
-        assertEquals(result, menu);
+    public void testGetAllOrder() {
+        List<Order> orders = orderDao.getAllOrder();
+        assertEquals(orders.size(), 4);
     }
 
     @Test
-    public void testGetMenu() {
-        Menu expected = new Menu();
+    public void testGetOrderById() {
+        Order expected = new Order();
         expected.setId(1000L);
-        expected.setName("pizza");
-        Menu result = menuDao.getMenuById(1000L);
+        Order result = orderDao.getOrderById(1000L);
         assertEquals(expected, result);
-    }
-
-    @Test
-    public void testGetListMenu() {
-        List<Menu> menus = menuDao.getAllMenu();
-        assertEquals(menus.size(), 4);
-    }
-
-    @Test
-    public void testUpdateMenu() {
-        String updateName = "poulet";
-        Menu expected = new Menu();
-        expected.setId(1000L);
-        expected.setName(updateName);
-        Menu original = menuDao.getMenuById(1000L);
-        assertNotSame(expected, original);
-        original.setName(updateName);
-        menuDao.updateMenu(original);
-        Menu result = menuDao.getMenuById(1000L);
-        assertEquals(expected, result);
-    }
-
-    @Test
-    public void testDeleteMenu() {
-        Menu menu = new Menu();
-        menu.setId(1000L);
-        menuDao.removeMenu(menu);
-        Menu result = menuDao.getMenuById(1000L);
-        assertNull(result);
     }
 
     @Before
@@ -110,12 +77,12 @@ public class MenuIntegrationTest {
     @BeforeClass
     public static void setUpClass() {
         try {
-            dataSet = new FlatXmlDataSet(ClassLoader.getSystemResourceAsStream("org/youfood/datatest/insert_menus.xml"));
+            dataSet = new FlatXmlDataSet(ClassLoader.getSystemResourceAsStream("org/youfood/datatest/insert_order.xml"));
             control.startJpa();
         } catch (IOException e) {
-            throw new CoreException("Unable to read insert_menus.xml DataSet file", e);
+            throw new CoreException("Unable to read insert_order.xml DataSet file", e);
         } catch (DataSetException e) {
-            throw new CoreException("Unable to read insert_menus.xml DataSet file", e);
+            throw new CoreException("Unable to read insert_order.xml DataSet file", e);
         }
     }
 
