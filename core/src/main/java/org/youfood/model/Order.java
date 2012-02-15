@@ -8,6 +8,9 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Orders")
+@NamedQueries({
+        @NamedQuery(name = "findAllOrder", query = "SELECT o FROM Order AS o")
+})
 public class Order {
 
     @Id

@@ -2,8 +2,6 @@ package org.youfood.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.persist.jpa.JpaPersistModule;
-import org.youfood.dao.MenuDao;
-import org.youfood.dao.jpa.MenuDaoJPA;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>

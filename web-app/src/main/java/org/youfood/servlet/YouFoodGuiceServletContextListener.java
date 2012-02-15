@@ -33,7 +33,7 @@ public class YouFoodGuiceServletContextListener extends GuiceServletContextListe
     protected Injector getInjector() {
         LOG.info("Init servlet context");
         Set<Module> modules = youFoodModuleLoader.getYouFoodModules();
-        return Guice.createInjector(Modules.combine(modules));
+        return Guice.createInjector(modules);
     }
 
     @Override

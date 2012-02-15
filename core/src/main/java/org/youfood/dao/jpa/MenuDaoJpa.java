@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class MenuDaoJPA implements MenuDao {
+public class MenuDaoJpa implements MenuDao {
 
     @Inject
     private EntityManager entityManager;
