@@ -2,6 +2,8 @@ package org.youfood.cook.pages;
 
 import com.vaadin.Application;
 import com.vaadin.ui.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,9 +13,18 @@ import javax.inject.Named;
  */
 public class MainPage extends Application {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainPage.class);
+
     @Inject
     @Named("welcome")
     protected String text;
+
+    @Inject
+    private RightPanel rightPanel;
+
+    public MainPage() {
+        LOGGER.debug("MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE ");
+    }
 
     @Override
     public void init() {
@@ -21,22 +32,33 @@ public class MainPage extends Application {
         Window window = new Window();
         VerticalLayout layout = new VerticalLayout();
         layout.setMargin(true);
+        layout.setSpacing(true);
 
-        Panel panel = new Panel();
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setMargin(true);
-        panel.setContent(verticalLayout);
-        panel.setWidth("300px");
-        Button button = new Button("Menus");
-        button.setWidth("100%");
-        button.setHeight("60px");
-//        button.setSizeFull();
+        MenuMainPage menuMainPage = new MenuMainPage();
+        menuMainPage.setWidth("100%");
 
-        verticalLayout.addComponent(button);
-//        horizontalLayout.setWidth("300px");
-        verticalLayout.setHeight("800px");
+        rightPanel.setWidth("100%");
+        rightPanel.setHeight("800px");
 
-        layout.addComponent(panel);
+        CenterPanel centerPanel = new CenterPanel();
+        centerPanel.setWidth("100%");
+        centerPanel.setHeight("800px");
+        rightPanel.addOrderListener(centerPanel);
+
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+//        horizontalLayout.setMargin(true);
+        horizontalLayout.setSpacing(true);
+        horizontalLayout.setWidth("100%");
+        horizontalLayout.addComponent(rightPanel);
+        horizontalLayout.setComponentAlignment(rightPanel, Alignment.MIDDLE_LEFT);
+        horizontalLayout.setExpandRatio(rightPanel, 0.5F);
+        horizontalLayout.addComponent(centerPanel);
+        horizontalLayout.setComponentAlignment(centerPanel, Alignment.MIDDLE_RIGHT);
+        horizontalLayout.setExpandRatio(centerPanel, 3.0F);
+
+        layout.addComponent(menuMainPage);
+        layout.addComponent(horizontalLayout);
+
         window.setContent(layout);
         setMainWindow(window);
     }
