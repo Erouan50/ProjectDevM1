@@ -19,6 +19,5 @@ public class VaadinModule extends ServletModule {
         serve("/*").with(GuiceApplicationServlet.class);
         bind(Application.class).to(MainPage.class);
         bindConstant().annotatedWith(Names.named("welcome")).to("Main page");
-//        LOGGER.info(getServletContext().getContextPath());
     }
 }

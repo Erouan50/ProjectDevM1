@@ -21,9 +21,11 @@ public class MainPage extends Application {
 
     @Inject
     private RightPanel rightPanel;
+    @Inject
+    private CenterPanel centerPanel;
 
     public MainPage() {
-        LOGGER.debug("MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE MAIN PAGE ");
+
     }
 
     @Override
@@ -40,13 +42,11 @@ public class MainPage extends Application {
         rightPanel.setWidth("100%");
         rightPanel.setHeight("800px");
 
-        CenterPanel centerPanel = new CenterPanel();
         centerPanel.setWidth("100%");
         centerPanel.setHeight("800px");
         rightPanel.addOrderListener(centerPanel);
 
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-//        horizontalLayout.setMargin(true);
         horizontalLayout.setSpacing(true);
         horizontalLayout.setWidth("100%");
         horizontalLayout.addComponent(rightPanel);
