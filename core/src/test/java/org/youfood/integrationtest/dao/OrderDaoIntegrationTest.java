@@ -8,10 +8,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +32,9 @@ import static org.junit.Assert.*;
  */
 @RunWith(GuiceJUnitRunner.class)
 @GuiceJUnitRunner.GuiceModules({TestModule.class})
-public class OrderIntegrationTest {
+public class OrderDaoIntegrationTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderIntegrationTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDaoIntegrationTest.class);
 
     private static IDataSet dataSet;
 

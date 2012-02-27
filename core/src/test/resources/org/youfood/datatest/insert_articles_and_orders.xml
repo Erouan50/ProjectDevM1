@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <orders id="1"/>
+    <orders id="2"/>
+
+    <articles id="1" name="sel" type="content"/>
+    <articles id="2" name="poivre" type="content"/>
+    <articles id="3" name="sucre" type="content"/>
+    <articles id="4" name="farine" type="content"/>
+    <articles id="5" name="fast_menu" type="menu"/>
+    <articles id="6" name="lowcost_menu" type="menu"/>
+
+    <orders_articles orders_ID="1" articles_ID="1"/>
+    <orders_articles orders_ID="1" articles_ID="2"/>
+    <orders_articles orders_ID="1" articles_ID="3"/>
+    <orders_articles orders_ID="1" articles_ID="4"/>
+
+    <orders_articles orders_ID="2" articles_ID="1"/>
+    <orders_articles orders_ID="2" articles_ID="5"/>
+    <orders_articles orders_ID="2" articles_ID="6"/>
+</dataset>
