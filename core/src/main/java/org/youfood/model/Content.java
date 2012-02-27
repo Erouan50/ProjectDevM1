@@ -13,4 +13,5 @@ import java.util.Collection;
 @DiscriminatorValue(value = "content")
 public class Content extends Article {
 
+
 }

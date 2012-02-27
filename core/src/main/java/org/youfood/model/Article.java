@@ -1,6 +1,7 @@
 package org.youfood.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -9,13 +10,20 @@ import javax.persistence.*;
 @Table(name = "Articles")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
+@NamedQueries({
+        @NamedQuery(name = "findAllArticleByOrder", query = "SELECT article FROM Article AS article, IN(article.orders) AS o WHERE o = :order")
+})
 public class Article {
-
-    private Long id;
-    private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+
+    @ManyToMany(mappedBy = "articles")
+    @JoinTable(name = "Orders_Articles")
+    private List<Order> orders;
+
     public Long getId() {
         return id;
     }
@@ -30,6 +38,14 @@ public class Article {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -50,5 +66,14 @@ public class Article {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", orders=" + orders +
+                '}';
     }
 }
