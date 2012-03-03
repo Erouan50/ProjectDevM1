@@ -22,7 +22,6 @@ public class ArticleDaoJpa implements ArticleDao {
     public List<Article> getArticleByOrder(Order order) {
         EntityManager em = provider.get();
         Query query = em.createNamedQuery("findAllArticleByOrder");
-
         query.setParameter("order", order);
         return query.getResultList();
     }

@@ -16,6 +16,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Integer tableId;
     @ManyToMany
     @JoinTable(name = "Orders_Articles")
     private Collection<Article> articles;
@@ -34,6 +35,14 @@ public class Order {
 
     public void setArticles(Collection<Article> articles) {
         this.articles = articles;
+    }
+
+    public Integer getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(Integer tableId) {
+        this.tableId = tableId;
     }
 
     @Override
