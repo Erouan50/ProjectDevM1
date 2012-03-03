@@ -7,7 +7,10 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.Reindeer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youfood.cook.components.ButtonList;
+import org.youfood.cook.events.ButtonListEvent;
 import org.youfood.cook.events.OrderEvent;
+import org.youfood.cook.listeners.ButtonListListener;
 import org.youfood.cook.listeners.OrderListener;
 import org.youfood.model.Order;
 import org.youfood.services.OrderService;
@@ -19,13 +22,13 @@ import java.util.List;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class RightPanel extends Panel implements Button.ClickListener {
+public class RightPanel extends Panel implements ButtonListListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RightPanel.class);
 
-    private List<Button> buttons;
     private OrderService orderService;
     private List<OrderListener> orderListeners;
+    private ButtonList buttonList;
 
     @Inject
     public RightPanel(OrderService orderService) {
@@ -37,26 +40,18 @@ public class RightPanel extends Panel implements Button.ClickListener {
 
     private void initPanel() {
         setStyleName(Reindeer.PANEL_LIGHT);
-        buttons = new ArrayList<Button>();
         List<Order> orders = orderService.getAllOrder();
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setMargin(true);
-        verticalLayout.setSpacing(true);
+        buttonList = new ButtonList();
+        buttonList.addButtonListListener(this);
         for (Order order : orders) {
-            Button button = new Button(order.getId().toString());
-            button.setWidth("100%");
-            button.setHeight("60px");
-            button.addListener(this);
-            buttons.add(button);
-            verticalLayout.addComponent(button);
+            buttonList.addButton(order.getId(), formatTableId(order.getTableId()));
         }
-        addComponent(verticalLayout);
+        addComponent(buttonList);
     }
 
     @Override
-    public void buttonClick(Button.ClickEvent clickEvent) {
-        Long id = Long.parseLong(clickEvent.getButton().getCaption());
-        LOGGER.debug("Button id: {}", id);
+    public void buttonListClick(ButtonListEvent event) {
+        Long id = event.getId();
         Order order = orderService.getOrderById(id);
         OrderEvent orderEvent = new OrderEvent(order);
         for (OrderListener orderListener : orderListeners) {
@@ -71,4 +66,12 @@ public class RightPanel extends Panel implements Button.ClickListener {
     public void removeOrderListener(OrderListener orderListener) {
         orderListeners.remove(orderListener);
     }
+
+    private String formatTableId(Integer tableId) {
+        return new StringBuilder()
+                .append("Table n°")
+                .append(tableId)
+                .toString();
+    }
+
 }
