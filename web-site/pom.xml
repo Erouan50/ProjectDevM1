@@ -34,10 +34,4 @@
             <version>1.0</version>
         </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>cloudbees-maven</id>
-            <url>https://repository-erouan.forge.cloudbees.com/release</url>
-        </repository>
-    </repositories>
 </project>

@@ -67,5 +67,9 @@
             <id>eclipseLink</id>
             <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
         </repository>
+        <repository>
+            <id>cloudbees-maven</id>
+            <url>https://repository-erouan.forge.cloudbees.com/release/</url>
+        </repository>
     </repositories>
 </project>
