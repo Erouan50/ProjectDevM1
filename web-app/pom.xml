@@ -10,6 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>web-app</artifactId>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>org.youfood</groupId>
@@ -41,9 +42,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <!-- <build>
+    <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>7.0.1.v20091125</version>
@@ -103,8 +104,9 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
         </plugins>
-    </build>-->
+    </build>
+
 </project>

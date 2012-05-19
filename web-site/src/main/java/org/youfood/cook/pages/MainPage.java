@@ -4,14 +4,19 @@ import com.vaadin.Application;
 import com.vaadin.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youfood.model.Menu;
+import org.youfood.services.MenuService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * @author: Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class MainPage extends Application {
+public class MainPage extends Application implements Button.ClickListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainPage.class);
 
@@ -23,6 +28,8 @@ public class MainPage extends Application {
     private RightPanel rightPanel;
     @Inject
     private CenterPanel centerPanel;
+    @Inject
+    private MenuService menuService;
 
     public MainPage() {
 
@@ -61,5 +68,12 @@ public class MainPage extends Application {
 
         window.setContent(layout);
         setMainWindow(window);
+    }
+
+    @Override
+    public void buttonClick(Button.ClickEvent event) {
+        Date date = new GregorianCalendar(2012, 3, 6).getTime();
+        List<Menu> menus = menuService.getMenusWeekByDate(date);
+        LOGGER.debug("List menu {}", menus);
     }
 }

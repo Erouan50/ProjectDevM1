@@ -2,6 +2,7 @@ package org.youfood.dao;
 
 import org.youfood.model.Menu;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,4 +19,6 @@ public interface MenuDao {
     void updateMenu(Menu menu);
 
     void removeMenu(Menu menu);
+
+    List<Menu> getMenusWeekByDate(Date date);
 }

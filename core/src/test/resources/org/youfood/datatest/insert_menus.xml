@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
 <dataset>
-    <articles id='1000' name='pizza' type='menu'/>
-    <articles id='2000' name='patte' type='menu'/>
-    <articles id='3000' name='puree' type='menu'/>
-    <articles id='4000' name='riz' type='menu'/>
+    <articles id='1000' name='pizza' type='menu' availablestartdate="2012-03-04" availableenddate="2012-03-10"/>
+    <articles id='2000' name='patte' type='menu' availablestartdate="2012-03-04" availableenddate="2012-03-10"/>
+    <articles id='3000' name='puree' type='menu' availablestartdate="2012-03-04" availableenddate="2012-03-10"/>
+    <articles id='4000' name='riz' type='menu' availablestartdate="2012-03-18" availableenddate="2012-03-24"/>
 </dataset>

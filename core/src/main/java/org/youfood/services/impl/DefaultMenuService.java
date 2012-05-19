@@ -5,6 +5,8 @@ import org.youfood.model.Menu;
 import org.youfood.services.MenuService;
 
 import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -32,5 +34,10 @@ public class DefaultMenuService implements MenuService {
     @Override
     public void removeMenu(Menu menu) {
         menuDao.removeMenu(menu);
+    }
+
+    @Override
+    public List<Menu> getMenusWeekByDate(Date date) {
+        return menuDao.getMenusWeekByDate(date);
     }
 }

@@ -1,5 +1,6 @@
 package org.youfood.dao.jpa;
 
+import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 import org.youfood.dao.MenuDao;
 import org.youfood.model.Menu;
@@ -7,6 +8,7 @@ import org.youfood.model.Menu;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,34 +17,41 @@ import java.util.List;
 public class MenuDaoJpa implements MenuDao {
 
     @Inject
-    private EntityManager entityManager;
+    private Provider<EntityManager> entityManager;
 
     @Override
     @Transactional
     public void addMenu(Menu menu) {
-        entityManager.persist(menu);
+        entityManager.get().persist(menu);
     }
 
     @Override
     public Menu getMenuById(Long id) {
-        return entityManager.find(Menu.class, id);
+        return entityManager.get().find(Menu.class, id);
     }
 
     @Override
     public List<Menu> getAllMenu() {
-        Query query = entityManager.createNamedQuery("findAllList");
+        Query query = entityManager.get().createNamedQuery("findAllList");
         return query.getResultList();
     }
 
     @Override
     @Transactional
     public void updateMenu(Menu menu) {
-        entityManager.merge(menu);
+        entityManager.get().merge(menu);
     }
 
     @Override
     @Transactional
     public void removeMenu(Menu menu) {
-        entityManager.remove(entityManager.merge(menu));
+        entityManager.get().remove(entityManager.get().merge(menu));
+    }
+
+    @Override
+    public List<Menu> getMenusWeekByDate(Date date) {
+        Query query = entityManager.get().createNamedQuery("findAllMenuBetweenDates");
+        query.setParameter("date",date);
+        return query.getResultList();
     }
 }

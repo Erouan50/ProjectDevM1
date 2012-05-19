@@ -7,7 +7,7 @@ import com.vaadin.ui.Panel;
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public class MenuMainPage extends Panel {
+public class MenuMainPage extends Panel implements Button.ClickListener{
 
     public MenuMainPage() {
         init();
@@ -21,8 +21,14 @@ public class MenuMainPage extends Panel {
         Button button = new Button("Menus");
         button.setWidth("325px");
         button.setHeight("60px");
+        button.addListener(this);
 
         horizontalLayout.addComponent(button);
         setContent(horizontalLayout);
+    }
+
+    @Override
+    public void buttonClick(Button.ClickEvent clickEvent) {
+        getWindow().addWindow(new MenuSubWindows());
     }
 }

@@ -2,6 +2,7 @@ package org.youfood.services;
 
 import org.youfood.model.Menu;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface MenuService {
     void updateMenu(Menu menu);
 
     void removeMenu(Menu menu);
+
+    List<Menu> getMenusWeekByDate(Date date);
 }

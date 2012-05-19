@@ -23,6 +23,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -90,6 +93,13 @@ public class MenuDaoIntegrationTest {
         menuDao.removeMenu(menu);
         Menu result = menuDao.getMenuById(1000L);
         assertNull(result);
+    }
+
+//    @Test
+    public void testGetMenusWeekByDate() {
+        Date date = new GregorianCalendar(2012, 3, 6).getTime();
+        List<Menu> menus = menuDao.getMenusWeekByDate(date);
+        assertEquals(3, menus.size());
     }
 
     @Before
