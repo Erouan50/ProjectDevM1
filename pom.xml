@@ -11,45 +11,11 @@
     <modules>
         <!--<module>android-app</module>-->
         <module>core</module>
-        <module>restaurant-part</module>
-        <module>manager-part</module>
+        <module>restaurant-web-app</module>
+        <module>manager-web-app</module>
     </modules>
 
-    <properties>
-        <slf4j.version>1.6.1</slf4j.version>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>
-        <dependency>
-            <artifactId>log4j</artifactId>
-            <groupId>log4j</groupId>
-            <version>1.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>0.9.29</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
         <dependency>
             <artifactId>junit</artifactId>
             <groupId>junit</groupId>

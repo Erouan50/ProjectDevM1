@@ -21,7 +21,6 @@ public class Article {
     private String name;
 
     @ManyToMany(mappedBy = "articles")
-    @JoinTable(name = "Orders_Articles")
     private List<Order> orders;
 
     public Long getId() {
