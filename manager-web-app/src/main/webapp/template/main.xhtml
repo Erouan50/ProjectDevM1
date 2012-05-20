@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: erouan
+  Date: 5/10/12
+  Time: 7:25 PM
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>RMT - <ui:insert name="title"/></title>
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/style.css"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/flick/jquery-ui-1.8.20.custom.css"/>
+    <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-ui-1.8.20.custom.min.js"></script>
+</h:head>
+
+<h:body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <h:outputLink styleClass="brand" value="#">
+                    <h:outputText value="#{msg['templates.main.projectName']}"/>
+                </h:outputLink>
+
+                <div class="nav-collapse">
+                    <h:form style="display: inline;">
+                        <ul class="nav pull-right">
+                            <li>
+                                <h:outputLink value="login.xhtml" rendered="#{!userController.authenticated}">
+                                    <h:outputText value="#{msg['templates.main.menu.login']}"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:commandLink value="#{msg['templates.main.menu.logout']}"
+                                               action="#{userController.logout}"
+                                               rendered="#{userController.authenticated}"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section style="margin-top: 80px;">
+        <ui:insert name="content"/>
+    </section>
+
+    <footer style="text-align: center;">
+        <em> 2012 Inc. All rights reserved</em>
+    </footer>
+</h:body>
+
+</html>
