@@ -2,21 +2,46 @@ package org.youfood.services;
 
 import org.youfood.model.Menu;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
-public interface MenuService {
+@Stateless
+public class MenuService {
 
-    void addMenu(Menu menu);
+    @PersistenceContext
+    private EntityManager em;
 
-    Menu getMenuById(Long id);
+    public void addMenu(Menu menu) {
+        em.persist(menu);
+    }
 
-    void updateMenu(Menu menu);
+    public Menu getMenuById(Long id) {
+        return em.find(Menu.class, id);
+    }
 
-    void removeMenu(Menu menu);
+    public List<Menu> getAllMenu() {
+        Query query = em.createNamedQuery("findAllList");
+        return query.getResultList();
+    }
 
-    List<Menu> getMenusWeekByDate(Date date);
+    public void updateMenu(Menu menu) {
+        em.merge(menu);
+    }
+
+    public void removeMenu(Menu menu) {
+        em.remove(em.merge(menu));
+    }
+
+    public List<Menu> getMenusWeekByDate(Date date) {
+        Query query = em.createNamedQuery("findAllMenuBetweenDates");
+        query.setParameter("date",date);
+        return query.getResultList();
+    }
 }
