@@ -5,6 +5,7 @@ import org.youfood.services.MenuService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,14 +18,20 @@ public class MenuController {
 
     @EJB
     private MenuService menuService;
+    @ManagedProperty("#{menuFilterController}")
+    private MenuFilterController menuFilterController;
     private List<Menu> menus;
 
     public List<Menu> getMenus() {
-        if (menus == null) {
+        if (menuFilterController.isFiltered()) {
+            menus = menuFilterController.getFilteredMenu();
+        } else {
             menus = menuService.getAllMenu();
         }
-        Logger.getLogger(MenuController.class.getName()).log(Level.WARNING, "Menus size: " + menus.size());
-        System.out.println("toto");
         return menus;
+    }
+
+    public void setMenuFilterController(MenuFilterController menuFilterController) {
+        this.menuFilterController = menuFilterController;
     }
 }

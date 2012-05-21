@@ -1,7 +1,12 @@
 package org.youfood.controller;
 
+import org.youfood.model.Menu;
+import org.youfood.services.MenuService;
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -9,12 +14,22 @@ import java.util.Date;
 @ManagedBean
 public class MenuFilterController {
 
+    @EJB
+    private MenuService menuService;
     private String name;
     private Date startDate;
     private Date endDate;
+    private List<Menu> filteredMenu;
 
-    public String doFilter() {
-        return null;
+    public boolean isFiltered() {
+        return name != null || startDate != null || endDate != null;
+    }
+
+    public List<Menu> getFilteredMenu() {
+        if (filteredMenu == null) {
+            filteredMenu = menuService.getFilteredMenu(name, startDate, endDate);
+        }
+        return filteredMenu;
     }
 
     public String getName() {
