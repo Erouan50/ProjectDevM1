@@ -44,6 +44,27 @@
                                 <h:outputText value="#{msg['templates.main.menu.add_menu']}"/>
                             </h:outputLink>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <b class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <h:outputLink
+                                            value="#{facesContext.externalContext.request.contextPath}/auth/list_categories.xhtml"
+                                            rendered="#{userController.authenticated}">
+                                        <h:outputText value="#{msg['templates.main.menu.categories.list']}"/>
+                                    </h:outputLink>
+                                </li>
+                                <li>
+                                    <h:outputLink
+                                            value="#{facesContext.externalContext.request.contextPath}/auth/add_category.xhtml"
+                                            rendered="#{userController.authenticated}">
+                                        <h:outputText value="#{msg['templates.main.menu.categories.add']}"/>
+                                    </h:outputLink>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <h:form style="display: inline;">
                         <ul class="nav pull-right">
