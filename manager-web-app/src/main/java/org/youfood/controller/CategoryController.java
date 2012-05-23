@@ -5,6 +5,7 @@ import org.youfood.services.CategoryService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import java.util.List;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -15,6 +16,7 @@ public class CategoryController {
     @EJB
     private CategoryService categoryService;
     private Category category;
+    private List<Category> categories;
 
     public String addCategory() {
         categoryService.addCategory(category);
@@ -26,5 +28,12 @@ public class CategoryController {
             category = new Category();
         }
         return category;
+    }
+
+    public List<Category> getCategories() {
+        if (categories == null) {
+            categories = categoryService.getAllCategories();
+        }
+        return categories;
     }
 }

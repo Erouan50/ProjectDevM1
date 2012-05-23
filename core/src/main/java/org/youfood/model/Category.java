@@ -7,6 +7,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "CATEGORIES")
+@NamedQueries({
+        @NamedQuery(name = "findAllCategories", query = "SELECT category FROM Category AS category")
+})
 public class Category {
 
     @Id
