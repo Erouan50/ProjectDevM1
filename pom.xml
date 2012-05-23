@@ -9,7 +9,7 @@
     <version>0.1</version>
     <packaging>pom</packaging>
     <modules>
-        <!--<module>android-app</module>-->
+        <module>android-app</module>
         <module>core</module>
         <module>restaurant-web-app</module>
         <module>manager-web-app</module>
