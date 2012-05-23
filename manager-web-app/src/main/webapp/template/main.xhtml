@@ -18,6 +18,7 @@
           href="#{facesContext.externalContext.request.contextPath}/css/flick/jquery-ui-1.8.20.custom.css"/>
     <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
     <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-ui-1.8.20.custom.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/js/menu.js"></script>
 </h:head>
 
 <h:body>
@@ -45,9 +46,12 @@
                             </h:outputLink>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <b class="caret"/>
-                            </a>
+                            <h:panelGroup rendered="#{userController.authenticated}">
+                                <a href="#" data-toggle="dropdown">
+                                    <h:outputText value="#{msg['templates.main.menu.categories']}"/>
+                                    <b class="caret"/>
+                                </a>
+                            </h:panelGroup>
                             <ul class="dropdown-menu">
                                 <li>
                                     <h:outputLink
@@ -93,6 +97,9 @@
         <em> 2012 Inc. All rights reserved</em>
     </footer>
     <ui:insert name="script"/>
+    <script>
+        $('.dropdown-toggle').dropdown();
+    </script>
 </h:body>
 
 </html>
