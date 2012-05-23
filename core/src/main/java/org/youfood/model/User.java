@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "findUserByUsernameAndPassword", query = "SELECT user FROM User AS user WHERE user.username = :username AND user.password = :password")
 })
+@Table(name = "USERS")
 public class User {
 
     @Id

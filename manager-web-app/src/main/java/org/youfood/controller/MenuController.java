@@ -22,6 +22,13 @@ public class MenuController {
     private MenuFilterController menuFilterController;
     private List<Menu> menus;
 
+    private Menu menu;
+
+    public String addMenu() {
+        menuService.addMenu(menu);
+        return "/auth/manager_home?faces-redirect=true";
+    }
+
     public List<Menu> getMenus() {
         if (menuFilterController.isFiltered()) {
             menus = menuFilterController.getFilteredMenu();
@@ -29,6 +36,13 @@ public class MenuController {
             menus = menuService.getAllMenu();
         }
         return menus;
+    }
+
+    public Menu getMenu() {
+        if (menu == null) {
+            menu = new Menu();
+        }
+        return menu;
     }
 
     public void setMenuFilterController(MenuFilterController menuFilterController) {

@@ -17,7 +17,7 @@ import javax.persistence.Query;
 @Stateless
 public class UserService {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "Youfood-PU")
     private EntityManager em;
 
     public Manager authenticateManager(String username, String password) {

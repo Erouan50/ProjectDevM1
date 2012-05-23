@@ -8,19 +8,29 @@ import java.util.Date;
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
 @Entity
+@Table(name = "MENU")
 @NamedQueries({
         @NamedQuery(name = "findAllList", query = "SELECT m FROM Menu AS m"),
         @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate")
 })
 @DiscriminatorValue(value = "menu")
-public class Menu extends Article {
+public class Menu {
 
-    @ManyToMany
-    private Collection<Content> contents;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    @Lob
+    private String description;
+    private String picturePath;
     @Temporal(TemporalType.DATE)
     private Date availableStartDate;
     @Temporal(TemporalType.DATE)
     private Date availableEndDate;
+    @ManyToOne
+    @JoinColumn(name = "Category")
+    private Category category;
+
 
     public Date getAvailableStartDate() {
         return availableStartDate;
@@ -38,26 +48,43 @@ public class Menu extends Article {
         this.availableEndDate = availableEndDate;
     }
 
-    public Collection<Content> getContents() {
-        return contents;
+    public Long getId() {
+        return id;
     }
 
-    public void setContents(Collection<Content> contents) {
-        this.contents = contents;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Menu)) return false;
-
-        Menu menu = (Menu) o;
-
-        return true;
+    public String getDescription() {
+        return description;
     }
 
-    @Override
-    public int hashCode() {
-        return contents != null ? contents.hashCode() : 0;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

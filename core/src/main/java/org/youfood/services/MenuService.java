@@ -18,7 +18,7 @@ import java.util.List;
 @Stateless
 public class MenuService {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "Youfood-PU")
     private EntityManager em;
 
     public void addMenu(Menu menu) {

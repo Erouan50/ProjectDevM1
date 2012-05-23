@@ -14,7 +14,8 @@
     <title>RMT - <ui:insert name="title"/></title>
     <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/flick/jquery-ui-1.8.20.custom.css"/>
+    <link rel="stylesheet"
+          href="#{facesContext.externalContext.request.contextPath}/css/flick/jquery-ui-1.8.20.custom.css"/>
     <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
     <script src="#{facesContext.externalContext.request.contextPath}/js/jquery-ui-1.8.20.custom.min.js"></script>
 </h:head>
@@ -28,6 +29,22 @@
                 </h:outputLink>
 
                 <div class="nav-collapse">
+                    <ul class="nav">
+                        <li>
+                            <h:outputLink
+                                    value="#{facesContext.externalContext.request.contextPath}/auth/manager_home.xhtml"
+                                    rendered="#{userController.authenticated}">
+                                <h:outputText value="#{msg['templates.main.menu.home']}"/>
+                            </h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink
+                                    value="#{facesContext.externalContext.request.contextPath}/auth/add_menu.xhtml"
+                                    rendered="#{userController.authenticated}">
+                                <h:outputText value="#{msg['templates.main.menu.add_menu']}"/>
+                            </h:outputLink>
+                        </li>
+                    </ul>
                     <h:form style="display: inline;">
                         <ul class="nav pull-right">
                             <li>

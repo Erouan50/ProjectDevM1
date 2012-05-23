@@ -14,7 +14,7 @@ import java.util.List;
 @Stateless
 public class OrderService {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "Youfood-PU")
     private EntityManager em;
 
     public List<Order> getAllOrder() {
