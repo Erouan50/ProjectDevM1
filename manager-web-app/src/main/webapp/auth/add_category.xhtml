@@ -12,4 +12,31 @@
     <ui:define name="title">
         <h:outputText value="#{msg['views.add_category.title']}"/>
     </ui:define>
+    <ui:define name="content">
+        <h:form id="form" styleClass="form-horizontal">
+            <fieldset>
+                <legend>
+                    <h:outputText value="#{msg['views.add_category.form.legend']}"/>
+                </legend>
+                <div class="control-group">
+                    <div class="controls">
+                        <h:message for="form" styleClass="error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <h:outputLabel for="name" value="#{msg['views.add_category.form.name']}"
+                                   styleClass="control-label"/>
+
+                    <div class="controls">
+                        <h:inputText id="name" value="#{categoryController.category.name}"/>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <h:commandButton id="submit" styleClass="btn btn-primary"
+                                     value="#{msg['views.add_category.form.name']}" action="#{categoryController.addCategory}"/>
+                </div>
+            </fieldset>
+        </h:form>
+    </ui:define>
+
 </ui:composition>
