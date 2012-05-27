@@ -6,6 +6,7 @@ import org.youfood.services.MenuService;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +22,13 @@ public class MenuController {
     @ManagedProperty("#{menuFilterController}")
     private MenuFilterController menuFilterController;
     private List<Menu> menus;
+    private File picture;
 
     private Menu menu;
 
     public String addMenu() {
         menuService.addMenu(menu);
+        Logger.getLogger(MenuController.class.getName()).log(Level.WARNING, "File path: " + picture);
         return "/auth/manager_home?faces-redirect=true";
     }
 
@@ -47,5 +50,13 @@ public class MenuController {
 
     public void setMenuFilterController(MenuFilterController menuFilterController) {
         this.menuFilterController = menuFilterController;
+    }
+
+    public File getPicture() {
+        return picture;
+    }
+
+    public void setPicture(File picture) {
+        this.picture = picture;
     }
 }
