@@ -55,6 +55,32 @@
                         <h:message for="endDate" styleClass="help-inline error"/>
                     </div>
                 </div>
+                <div class="control-group">
+                    <h:outputLabel for="categories" value="#{msg['views.add_menu.form.categories']}"
+                                   styleClass="control-label"/>
+
+                    <div class="controls">
+                        <h:selectOneMenu id="categories" value="#{menuController.menu.category}"
+                                         converter="#{categoryConverter}">
+                            <f:selectItems value="#{categoryController.categoryItems}"/>
+                        </h:selectOneMenu>
+                        <h:message for="categories" styleClass="help-inline error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <h:outputLabel for="description" value="#{msg['views.add_menu.form.description']}"
+                                   styleClass="control-label"/>
+
+                    <div class="controls">
+                        <h:inputTextarea id="description" value="#{menuController.menu.description}"
+                                         styleClass="input-xlarge" rows="3"/>
+                        <h:message for="description" styleClass="help-inline error"/>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <h:commandButton id="submit" value="#{msg['views.add_menu.form.submit']}"
+                                     action="#{menuController.addMenu}" styleClass="btn btn-primary"/>
+                </div>
             </fieldset>
         </h:form>
     </ui:define>

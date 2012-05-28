@@ -30,6 +30,8 @@ public class MenuService {
         return em.find(Menu.class, id);
     }
 
+
+    @SuppressWarnings(value = "unchecked")
     public List<Menu> getAllMenu() {
         Query query = em.createNamedQuery("findAllList");
         return query.getResultList();
@@ -43,6 +45,7 @@ public class MenuService {
         em.remove(em.merge(menu));
     }
 
+    @SuppressWarnings(value = "unchecked")
     public List<Menu> getFilteredMenu(String name, Date startDate, Date endDate, Category category) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Menu> criteriaQuery = criteriaBuilder.createQuery(Menu.class);
@@ -71,6 +74,7 @@ public class MenuService {
         return query.getResultList();
     }
 
+    @SuppressWarnings(value = "unchecked")
     public List<Menu> getMenusWeekByDate(Date date) {
         Query query = em.createNamedQuery("findAllMenuBetweenDates");
         query.setParameter("date", date);
