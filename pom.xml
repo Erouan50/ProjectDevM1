@@ -9,7 +9,6 @@
     <version>0.1</version>
     <packaging>pom</packaging>
     <modules>
-        <module>android-app</module>
         <module>core</module>
         <module>restaurant-web-app</module>
         <module>manager-web-app</module>
@@ -50,6 +49,15 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>android</id>
+            <modules>
+                <module>android-app</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
