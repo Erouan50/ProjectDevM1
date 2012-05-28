@@ -1,5 +1,6 @@
 package org.youfood.services;
 
+import org.youfood.model.Category;
 import org.youfood.model.Menu;
 
 import javax.ejb.Stateless;
@@ -42,7 +43,7 @@ public class MenuService {
         em.remove(em.merge(menu));
     }
 
-    public List<Menu> getFilteredMenu(String name, Date startDate, Date endDate) {
+    public List<Menu> getFilteredMenu(String name, Date startDate, Date endDate, Category category) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Menu> criteriaQuery = criteriaBuilder.createQuery(Menu.class);
         Root<Menu> root = criteriaQuery.from(Menu.class);
@@ -58,6 +59,9 @@ public class MenuService {
         }
         if (endDate != null) {
             predicates.add(criteriaBuilder.equal(root.<Date>get("availableEndDate"), endDate));
+        }
+        if (category != null) {
+            predicates.add(criteriaBuilder.equal(root.<Category>get("category"), category));
         }
         criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
         Query query = em.createQuery(criteriaQuery);

@@ -1,5 +1,6 @@
 package org.youfood.controller;
 
+import org.youfood.model.Category;
 import org.youfood.model.Menu;
 import org.youfood.services.MenuService;
 
@@ -19,15 +20,16 @@ public class MenuFilterController {
     private String name;
     private Date startDate;
     private Date endDate;
+    private Category category;
     private List<Menu> filteredMenu;
 
     public boolean isFiltered() {
-        return name != null || startDate != null || endDate != null;
+        return name != null || startDate != null || endDate != null || category != null;
     }
 
     public List<Menu> getFilteredMenu() {
         if (filteredMenu == null) {
-            filteredMenu = menuService.getFilteredMenu(name, startDate, endDate);
+            filteredMenu = menuService.getFilteredMenu(name, startDate, endDate, category);
         }
         return filteredMenu;
     }
@@ -54,5 +56,13 @@ public class MenuFilterController {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -60,6 +60,14 @@
                                     </h:inputText>
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <h:outputLabel for="categories" value="#{msg['views.manager_home.filter.form.categories']}" styleClass="control-label"/>
+                                <div class="controls">
+                                    <h:selectOneMenu id="categories" value="#{menuFilterController.category}" converter="#{categoryConverter}">
+                                        <f:selectItems value="#{categoryController.categoryItems}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
                             <div class="form-actions">
                                 <h:commandButton id="submit" value="#{msg['views.manager_home.filter.form.submit']}"
                                                  action="manager_home"

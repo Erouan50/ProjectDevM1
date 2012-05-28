@@ -5,6 +5,8 @@ import org.youfood.services.CategoryService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.model.SelectItem;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ public class CategoryController {
     private CategoryService categoryService;
     private Category category;
     private List<Category> categories;
+    private List<SelectItem> categoryItems;
 
     public String addCategory() {
         categoryService.addCategory(category);
@@ -35,5 +38,16 @@ public class CategoryController {
             categories = categoryService.getAllCategories();
         }
         return categories;
+    }
+
+    public List<SelectItem> getCategoryItems() {
+        if (categoryItems == null){
+            categoryItems = new ArrayList<SelectItem>();
+            categoryItems.add(new SelectItem("", "None"));
+            for (Category category : getCategories()) {
+                categoryItems.add(new SelectItem(category, category.getName()));
+            }
+        }
+        return categoryItems;
     }
 }
