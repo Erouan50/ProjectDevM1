@@ -64,6 +64,10 @@
             <id>cloudbees-maven</id>
             <url>https://repository-erouan.forge.cloudbees.com/release/</url>
         </repository>
+        <repository>
+            <id>jboss</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
