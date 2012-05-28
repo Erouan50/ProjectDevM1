@@ -17,6 +17,7 @@ public class OrderService {
     @PersistenceContext(unitName = "Youfood-PU")
     private EntityManager em;
 
+    @SuppressWarnings(value = "unchecked")
     public List<Order> getAllOrder() {
         Query query = em.createNamedQuery("findAllOrder");
         return query.getResultList();

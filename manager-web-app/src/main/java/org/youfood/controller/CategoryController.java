@@ -26,6 +26,17 @@ public class CategoryController {
         return "/auth/list_categories?faces-redirect=true";
     }
 
+    public String editCategory(Category category) {
+        this.category = category;
+        return null;
+    }
+
+    public String updateCategory() {
+        categoryService.updateCategory(category);
+        return null;
+    }
+
+
     public Category getCategory() {
         if (category == null) {
             category = new Category();

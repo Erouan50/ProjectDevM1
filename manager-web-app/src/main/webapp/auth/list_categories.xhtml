@@ -14,13 +14,77 @@
         <h:outputText value="#{msg['views.list_categories.title']}"/>
     </ui:define>
     <ui:define name="content">
-        <h:dataTable value="#{categoryController.categories}" var="category" styleClass="table">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['views.list_categories.table.header.name']}"/>
-                </f:facet>
-                <h:outputText value="#{category.name}"/>
-            </h:column>
-        </h:dataTable>
+        <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+        <h:form id="tableForm">
+            <h:dataTable id="datas" value="#{categoryController.categories}" var="category" styleClass="table">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['views.list_categories.table.header.name']}"/>
+                    </f:facet>
+                    <h:outputText value="#{category.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['views.list_categories.table.header.actions']}"/>
+                    </f:facet>
+                    <h:commandLink id="submitTable" value="#{msg['views.list_categories.table.form.edit']}"
+                                   action="#{categoryController.editCategory(category)}">
+                        <f:ajax execute="@form" render="@form :modalForm" onevent="showModal"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <div id="editModal" class="modal hide"
+             style="display: none;">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">x</button>
+                <h3>
+                    <h:outputText value="#{msg['views.list_categories.modal.edit.header.title']}"/>
+                </h3>
+            </div>
+            <h:form id="modalForm" styleClass="modal-form">
+                <div class="modal-body">
+
+                    <h:inputHidden value="#{categoryController.category.id}"/>
+                    <fieldset>
+                        <div class="control-group">
+                            <h:outputLabel for="name"
+                                           value="#{msg['views.list_categories.modal.edit.body.form.name']}"/>
+
+                            <div class="controls">
+                                <h:inputText id="name" value="#{categoryController.category.name}"/>
+                                <h:message for="name" styleClass="help-inline error"/>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">
+                        <h:outputText value="#{msg['views.list_categories.modal.edit.footer.close']}"/>
+                    </a>
+                    <h:commandButton id="submitModal"
+                                     value="#{msg['views.list_categories.modal.edit.footer.submit']}"
+                                     action="#{categoryController.updateCategory}" styleClass="btn btn-primary">
+                        <f:ajax execute="@form" render="@form :tableForm" onevent="hideModal"/>
+                    </h:commandButton>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+    <ui:define name="script">
+        <script type="text/javascript">
+            function showModal(data) {
+                if (data.status == "success") {
+                    $('#editModal').modal('show');
+                }
+            }
+            function hideModal(data) {
+                if (data.status == "success") {
+                    $('#editModal').modal('hide');
+                }
+            }
+        </script>
     </ui:define>
 </ui:composition>

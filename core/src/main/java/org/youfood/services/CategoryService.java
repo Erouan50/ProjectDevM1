@@ -30,4 +30,8 @@ public class CategoryService {
     public Category getCategoryById(Long id) {
         return em.find(Category.class, id);
     }
+
+    public void updateCategory(Category category) {
+        em.merge(category);
+    }
 }
