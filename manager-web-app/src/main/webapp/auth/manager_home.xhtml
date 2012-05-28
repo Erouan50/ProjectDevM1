@@ -64,6 +64,7 @@
                                 <h:outputLabel for="categories" value="#{msg['views.manager_home.filter.form.categories']}" styleClass="control-label"/>
                                 <div class="controls">
                                     <h:selectOneMenu id="categories" value="#{menuFilterController.category}" converter="#{categoryConverter}">
+                                        <f:selectItem itemValue="" itemLabel="None"/>
                                         <f:selectItems value="#{categoryController.categoryItems}"/>
                                     </h:selectOneMenu>
                                 </div>

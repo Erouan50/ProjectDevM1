@@ -43,7 +43,6 @@ public class CategoryController {
     public List<SelectItem> getCategoryItems() {
         if (categoryItems == null){
             categoryItems = new ArrayList<SelectItem>();
-            categoryItems.add(new SelectItem("", "None"));
             for (Category category : getCategories()) {
                 categoryItems.add(new SelectItem(category, category.getName()));
             }
