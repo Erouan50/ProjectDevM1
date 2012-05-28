@@ -26,4 +26,8 @@ public class CategoryService {
         Query query = em.createNamedQuery("findAllCategories", Category.class);
         return query.getResultList();
     }
+
+    public Category getCategoryById(Long id) {
+        return em.find(Category.class, id);
+    }
 }
