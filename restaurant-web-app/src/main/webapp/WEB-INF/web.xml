@@ -7,7 +7,7 @@
 
     <context-param>
         <param-name>resteasy.jndi.resources</param-name>
-        <param-value>java:global/restaurant-web-app-0.1/DefaultHelloWorld!org.youfood.resources.HelloWorld</param-value>
+        <param-value>java:global/restaurant-web-app-0.1/DefaultMenuResource!org.youfood.resources.MenuResource</param-value>
     </context-param>
     
     <listener>

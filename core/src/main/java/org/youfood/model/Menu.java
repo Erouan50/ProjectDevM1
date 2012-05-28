@@ -1,6 +1,7 @@
 package org.youfood.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
         @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate")
 })
 @DiscriminatorValue(value = "menu")
+@XmlRootElement
 public class Menu {
 
     @Id
