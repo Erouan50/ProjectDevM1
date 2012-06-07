@@ -3,7 +3,7 @@
 
     <persistence-unit name="Youfood-PU">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:jboss/datasources/youfood-ds</jta-data-source>
+        <jta-data-source>java:jboss/datasources/youfood</jta-data-source>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
