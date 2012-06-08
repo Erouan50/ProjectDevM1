@@ -73,7 +73,7 @@
                             <!-- Add a data source -->
                             <execution>
                                 <id>add-datasource</id>
-                                <phase>install</phase>
+                                <phase>package</phase>
                                 <configuration>
                                     <address>subsystem=datasources,data-source=myDatasource</address>
                                     <resource>
@@ -81,7 +81,7 @@
                                         <properties>
                                             <jndi-name>java:jboss/datasources/youfood-ds</jndi-name>
                                             <enabled>true</enabled>
-                                            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM '${project.basedir}/org/youfood/sql/youfood_CATEGORIES.sql'\;RUNSCRIPT FROM '${project.basedir}/org/youfood/sql/youfood_MENU.sql'</connection-url>
+                                            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM '${project.basedir}/src/main/resources/org/youfood/sql/youfood_CATEGORIES.sql'\;RUNSCRIPT FROM '${project.basedir}/src/main/resources/org/youfood/sql/youfood_MENU.sql'</connection-url>
                                             <driver-class>org.h2.Driver</driver-class>
                                             <driver-name>h2</driver-name>
                                             <security.user-name>sa</security.user-name>
