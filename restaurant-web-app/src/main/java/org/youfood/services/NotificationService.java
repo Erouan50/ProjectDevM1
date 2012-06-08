@@ -58,7 +58,7 @@ public class NotificationService {
             throw new RuntimeException("Unable to connect or set up the rabbitmq connection", e);
         }
     }
-    
+
     public void setMessages(BlockingQueue<String> messages) {
         this.messages = messages;
     }

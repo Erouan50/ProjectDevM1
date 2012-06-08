@@ -21,8 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
- */
+* @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
+*/
 @WebServlet(urlPatterns = {"/notifications"}, asyncSupported = true)
 public class OrderNotification extends HttpServlet{
 
