@@ -8,7 +8,7 @@ import java.util.Properties;
  */
 public class RabbitMQConfiguration {
 
-    private static final String RABBITMQ_PROPERTIES = "org/youfood/configuration/rabbitmq.properties";
+    private static final String RABBITMQ_PROPERTIES = "/org/youfood/configuration/rabbitmq.properties";
 
     private String username;
     private String password;

@@ -9,12 +9,14 @@ import org.youfood.utils.RabbitMQConfiguration;
 import javax.annotation.PostConstruct;
 import javax.ejb.Asynchronous;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
+@Startup
 @Singleton
 public class NotificationService {
 
