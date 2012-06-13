@@ -5,6 +5,11 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
+   <context-param>
+      <param-name>resteasy.servlet.mapping.prefix</param-name>
+      <param-value>/resources</param-value>
+   </context-param>
+
     <context-param>
         <param-name>resteasy.jndi.resources</param-name>
         <param-value>java:global/restaurant-web-app-0.1/DefaultMenuResource!org.youfood.resources.MenuResource,java:global/restaurant-web-app-0.1/DefaultCategoryResource!org.youfood.resources.CategoryResource</param-value>
