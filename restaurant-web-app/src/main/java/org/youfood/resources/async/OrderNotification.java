@@ -1,6 +1,7 @@
 package org.youfood.resources.async;
 
 import org.youfood.services.NotificationService;
+import org.youfood.services.NotificationServiceListener;
 
 import javax.ejb.EJB;
 import javax.servlet.AsyncContext;
@@ -27,7 +28,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class OrderNotification extends HttpServlet{
 
     @EJB
-    private NotificationService notificationService;
+    private NotificationServiceListener notificationService;
 
     private Map<String, AsyncContext> asyncContexts = new ConcurrentHashMap<String, AsyncContext>();
     private BlockingQueue<String> messages = new LinkedBlockingQueue<String>();
