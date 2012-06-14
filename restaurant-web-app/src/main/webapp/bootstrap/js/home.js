@@ -28,13 +28,33 @@ $(document).ready(function(){
 	});
 
     var id = 102;
+    var menu = new Menu();
     $("#webService").click(function(){
-        $.get("http://localhost:8080/restaurant-web-app-0.1/menus/"+id,
+        $.get("http://localhost:8080/restaurant-web-app-0.1/resources/menus/"+id,
             function(data){
-                alert("Data Loaded: " +   data);
+                menu.ToObject(data);
+                alert("Data Loaded: " +   menu.description);
             }
         );
     })
 
 
 });
+
+
+function Menu()
+{
+    this.id;
+    this.name;
+    this.description;
+
+    this.ToObject = function(json)
+    {
+      this.id = json["id"];
+      this.name = json["name"];
+      this.description = json["description"];
+    };
+}
+
+
+

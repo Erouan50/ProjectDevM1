@@ -63,7 +63,7 @@ public class OrderNotification extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
-        response.setHeader("Acces-Control-Allow-Origin", "*");
+        //response.setHeader("Acces-Control-Allow-Origin", "*");
 
         PrintWriter writer = response.getWriter();
         final String id = UUID.randomUUID().toString();

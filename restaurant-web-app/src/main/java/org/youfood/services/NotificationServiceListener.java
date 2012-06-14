@@ -11,6 +11,7 @@ import javax.ejb.Singleton;
 
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
@@ -23,6 +24,11 @@ public class NotificationServiceListener {
     private static final String EXCHANGE_NAME = "test";
     private static final String ROUTING_KEY = "test";
     private static final boolean NO_ACK = false;
+
+    public NotificationServiceListener() {
+        messages = new LinkedBlockingQueue<String>();
+    }
+
 
     @Asynchronous
     public void notificationListener() {
