@@ -1,9 +1,7 @@
 package org.youfood.resources.async;
 
 import org.youfood.services.NotificationService;
-import org.youfood.services.NotificationServiceListener;
 
-import javax.ejb.EJB;
 import javax.servlet.AsyncContext;
 import javax.servlet.AsyncEvent;
 import javax.servlet.AsyncListener;
@@ -22,16 +20,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
-* @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
-*/
+ * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
+ */
 @WebServlet(urlPatterns = {"/notifications"}, asyncSupported = true)
-public class OrderNotification extends HttpServlet{
-
-    @EJB
-    private NotificationServiceListener notificationService;
+public class OrderNotification extends HttpServlet {
 
     private Map<String, AsyncContext> asyncContexts = new ConcurrentHashMap<String, AsyncContext>();
-    private BlockingQueue<String> messages = new LinkedBlockingQueue<String>();
+    private BlockingQueue<String> messages;
     private Thread notifier = new Thread(new Runnable() {
         @Override
         public void run() {
@@ -46,6 +41,7 @@ public class OrderNotification extends HttpServlet{
                         }
                     }
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                     break;
                 }
             }
@@ -55,7 +51,10 @@ public class OrderNotification extends HttpServlet{
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
+        messages = new LinkedBlockingQueue<String>();
+        NotificationService notificationService = new NotificationService();
         notificationService.setMessages(messages);
+        notificationService.start();
         notifier.start();
     }
 
