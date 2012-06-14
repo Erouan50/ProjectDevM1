@@ -35,7 +35,7 @@ public class OrderNotification extends HttpServlet {
                     String message = messages.take();
                     for (AsyncContext asyncContext : asyncContexts.values()) {
                         try {
-                            sendMessage(message, asyncContext);
+                            sendMessage(asyncContext.getResponse().getWriter(), message);
                         } catch (Exception e) {
                             asyncContexts.values().remove(asyncContext);
                         }
@@ -62,7 +62,7 @@ public class OrderNotification extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
-        //response.setHeader("Acces-Control-Allow-Origin", "*");
+        response.setHeader("Acces-Control-Allow-Origin", "*");
 
         PrintWriter writer = response.getWriter();
         final String id = UUID.randomUUID().toString();
@@ -94,9 +94,28 @@ public class OrderNotification extends HttpServlet {
         asyncContexts.put(id, ac);
     }
 
-    private void sendMessage(String message, AsyncContext asyncContext) throws IOException {
-        PrintWriter writer = asyncContext.getResponse().getWriter();
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AsyncContext ac = asyncContexts.get(request.getParameter("metadata.id"));
+        if ("close".equals(request.getParameter("metadata.type"))) {
+            ac.complete();
+            return;
+        }
+    }
+
+    private void sendMessage(PrintWriter writer, String message) throws IOException {
+        // default message format is message-size ; message-data ;
+        writer.print(message.length());
+        writer.print(";");
         writer.print(message);
+        writer.print(";");
         writer.flush();
+    }
+
+    @Override
+    public void destroy() {
+        messages.clear();
+        asyncContexts.clear();
+        notifier.interrupt();
     }
 }
