@@ -24,7 +24,7 @@ public class DefaultMenuResource implements MenuResource {
     }
 
     @Override
-    public Menu getMenuById(@PathParam("id") Long id) {
+    public Menu getMenuById(Long id) {
         return menuService.getMenuById(id);
     }
 }

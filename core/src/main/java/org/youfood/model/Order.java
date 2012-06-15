@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @NamedQueries({
-        @NamedQuery(name = "findAllOrder", query = "SELECT o FROM Order AS o")
+        @NamedQuery(name = "findAllOrder", query = "SELECT o FROM Order AS o"),
+        @NamedQuery(name = "findOrderByIdWithMenus", query = "SELECT o FROM Order AS o JOIN o.menus WHERE o.id = :id")
 })
 public class Order {
 

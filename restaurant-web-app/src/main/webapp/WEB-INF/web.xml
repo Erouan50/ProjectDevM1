@@ -12,7 +12,7 @@
 
     <context-param>
         <param-name>resteasy.jndi.resources</param-name>
-        <param-value>java:global/restaurant-web-app-0.1/DefaultMenuResource!org.youfood.resources.MenuResource,java:global/restaurant-web-app-0.1/DefaultCategoryResource!org.youfood.resources.CategoryResource</param-value>
+        <param-value>java:global/restaurant-web-app-0.1/DefaultMenuResource!org.youfood.resources.MenuResource,java:global/restaurant-web-app-0.1/DefaultCategoryResource!org.youfood.resources.CategoryResource,java:global/restaurant-web-app-0.1/DefaultOrderResource!org.youfood.resources.OrderResource</param-value>
     </context-param>
     
     <listener>

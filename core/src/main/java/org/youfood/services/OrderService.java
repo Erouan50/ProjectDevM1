@@ -24,6 +24,12 @@ public class OrderService {
     }
 
     public Order getOrderById(Long id) {
-        return em.find(Order.class, id);
+        Query query = em.createNamedQuery("findOrderByIdWithMenus");
+        query.setParameter("id", id);
+        Order order = (Order) query.getSingleResult();
+        em.detach(order);
+        em.flush();
+
+        return order;
     }
 }
