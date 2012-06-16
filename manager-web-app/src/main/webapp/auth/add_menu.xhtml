@@ -15,7 +15,25 @@
         <h:outputText value="#{msg['views.add_menu.title']}"/>
     </ui:define>
     <ui:define name="content">
-        <h:form id="form" styleClass="form-horizontal" enctype="multipart/form-data">
+        <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+        <h:form id="fromMenu" styleClass="form-inline" prependId="false">
+            <fieldset>
+                <legend>
+                    <h:outputText value="#{msg['views.add_menu.form.legend.fromMenu']}"/>
+                </legend>
+                <h:selectOneMenu id="categories" value="#{addMenuController.category}" converter="#{categoryConverter}"
+                                 valueChangeListener="#{addMenuController.processValueChange}">
+                    <f:selectItems value="#{categoryController.categoryItems}"/>
+                    <f:ajax execute="categories" render="@form :form" event="change" onevent="setDatePickerAjax"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu id="menu" value="#{addMenuController.menu}" converter="#{menuConverter}"
+                                 disabled="#{empty addMenuController.category}">
+                    <f:selectItems value="#{addMenuController.menuItems}"/>
+                    <f:ajax execute="menu" render="@form :form" event="change" onevent="setDatePickerAjax"/>
+                </h:selectOneMenu>
+            </fieldset>
+        </h:form>
+        <h:form id="form" styleClass="form-horizontal">
             <fieldset>
                 <legend>
                     <h:outputText value="#{msg['views.add_menu.form.legend']}"/>
@@ -29,7 +47,7 @@
                     <h:outputLabel for="name" value="#{msg['views.add_menu.form.name']}" styleClass="control-label"/>
 
                     <div class="controls">
-                        <h:inputText id="name" value="#{menuController.menu.name}"/>
+                        <h:inputText id="name" value="#{addMenuController.menu.name}"/>
                         <h:message for="name" styleClass="help-inline error"/>
                     </div>
                 </div>
@@ -38,7 +56,7 @@
                                    styleClass="control-label"/>
 
                     <div class="controls">
-                        <h:inputText id="startDate" value="#{menuController.menu.availableStartDate}">
+                        <h:inputText id="startDate" value="#{addMenuController.menu.availableStartDate}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
                         <h:message for="startDate" styleClass="help-inline error"/>
@@ -49,7 +67,7 @@
                                    styleClass="control-label"/>
 
                     <div class="controls">
-                        <h:inputText id="endDate" value="#{menuController.menu.availableEndDate}">
+                        <h:inputText id="endDate" value="#{addMenuController.menu.availableEndDate}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
                         <h:message for="endDate" styleClass="help-inline error"/>
@@ -60,7 +78,7 @@
                                    styleClass="control-label"/>
 
                     <div class="controls">
-                        <h:selectOneMenu id="categories" value="#{menuController.menu.category}"
+                        <h:selectOneMenu id="categories" value="#{addMenuController.menu.category}"
                                          converter="#{categoryConverter}">
                             <f:selectItems value="#{categoryController.categoryItems}"/>
                         </h:selectOneMenu>
@@ -72,14 +90,14 @@
                                    styleClass="control-label"/>
 
                     <div class="controls">
-                        <h:inputTextarea id="description" value="#{menuController.menu.description}"
+                        <h:inputTextarea id="description" value="#{addMenuController.menu.description}"
                                          styleClass="input-xlarge" rows="3"/>
                         <h:message for="description" styleClass="help-inline error"/>
                     </div>
                 </div>
                 <div class="form-actions">
                     <h:commandButton id="submit" value="#{msg['views.add_menu.form.submit']}"
-                                     action="#{menuController.addMenu}" styleClass="btn btn-primary"/>
+                                     action="#{addMenuController.addMenu}" styleClass="btn btn-primary"/>
                 </div>
             </fieldset>
         </h:form>
@@ -87,13 +105,21 @@
     <ui:define name="script">
         <script type="text/javascript">
             $(function () {
+                setDatePicker();
+            });
+            function setDatePickerAjax(data) {
+                if (data.status == "success") {
+                    setDatePicker();
+                }
+            }
+            function setDatePicker() {
                 $("#form\\:startDate").datepicker({
                     dateFormat:"dd/mm/yy"
                 });
                 $("#form\\:endDate").datepicker({
                     dateFormat:"dd/mm/yy"
                 });
-            });
+            }
         </script>
     </ui:define>
 </ui:composition>
