@@ -20,6 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer tableId;
+    private Integer status;
     @Temporal(TemporalType.DATE)
     private Date creationDate;
     @ManyToMany
@@ -40,6 +41,15 @@ public class Order {
     public void setTableId(Integer tableId) {
         this.tableId = tableId;
     }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
 
     public Date getCreationDate() {
         return creationDate;

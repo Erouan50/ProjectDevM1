@@ -32,4 +32,8 @@ public class OrderService {
 
         return order;
     }
+
+    public void updateOrder(Order order) {
+        em.merge(order);
+    }
 }
