@@ -6,14 +6,12 @@ import org.youfood.android.activity.builder.YouFoodActivityManager;
 /**
  * User: GJean Date: 28/03/12 Time: 15:16
  */
-abstract public class YouFoodActivity extends AbstractActivity
-{
+abstract public class YouFoodActivity extends AbstractActivity {
 
-	@Override
-	protected void viewDidLoad()
-	{
-		super.viewDidLoad();
-		YouFoodActivityManager.getInstance().build(this);
-	}
+    @Override
+    protected void loadView() {
+        super.loadView();
+        YouFoodActivityManager.getInstance().build(this);
+    }
 
 }

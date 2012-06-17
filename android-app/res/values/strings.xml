@@ -4,6 +4,7 @@
     <string name="app_name">youfood-android</string>
 
     <string name="progressbar.loading">Chargement...</string>
+    <string name="global.undefined">Default Text</string>
 
 
 </resources>
