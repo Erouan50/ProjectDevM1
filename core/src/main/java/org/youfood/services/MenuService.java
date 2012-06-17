@@ -80,4 +80,10 @@ public class MenuService {
         query.setParameter("date", date);
         return query.getResultList();
     }
+
+    public List<Menu> getMenusByCategory(Category category) {
+        Query query = em.createNamedQuery("findAllMenuByCategory");
+        query.setParameter("category", category);
+        return query.getResultList();
+    }
 }

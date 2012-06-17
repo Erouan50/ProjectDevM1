@@ -1,12 +1,16 @@
 package org.youfood.controller;
 
+import org.youfood.model.Category;
 import org.youfood.model.Menu;
 import org.youfood.services.MenuService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,14 +28,6 @@ public class MenuController {
     private List<Menu> menus;
     private File picture;
 
-    private Menu menu;
-
-    public String addMenu() {
-        menuService.addMenu(menu);
-        Logger.getLogger(MenuController.class.getName()).log(Level.WARNING, "File path: " + picture);
-        return "/auth/manager_home?faces-redirect=true";
-    }
-
     public List<Menu> getMenus() {
         if (menuFilterController.isFiltered()) {
             menus = menuFilterController.getFilteredMenu();
@@ -39,13 +35,6 @@ public class MenuController {
             menus = menuService.getAllMenu();
         }
         return menus;
-    }
-
-    public Menu getMenu() {
-        if (menu == null) {
-            menu = new Menu();
-        }
-        return menu;
     }
 
     public void setMenuFilterController(MenuFilterController menuFilterController) {

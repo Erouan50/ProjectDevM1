@@ -12,7 +12,8 @@ import java.util.Date;
 @Table(name = "MENU")
 @NamedQueries({
         @NamedQuery(name = "findAllList", query = "SELECT m FROM Menu AS m"),
-        @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate")
+        @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate"),
+        @NamedQuery(name = "findAllMenuByCategory", query = "SELECT m FROM Menu AS m WHERE m.category = :category")
 })
 @DiscriminatorValue(value = "menu")
 @XmlRootElement
@@ -88,5 +89,22 @@ public class Menu {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Menu)) return false;
+
+        Menu menu = (Menu) o;
+
+        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }
