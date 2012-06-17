@@ -23,15 +23,23 @@ $(document).ready(function(){
 			var footer = '<div><input type="button" value="Validate this order." class="validate btn btn-success" id="'+$(this).attr("id")+'" /></div>';
 			var content ='<div id="'+$(this).attr("id")+'">'+message+' <br/> '+footer+' <br/></div>';
 			$("#infoOrder").html(content);
+
+            order.status = 1;
+            updateOrder(order);
 		});		
 		$(this).removeClass("btn-primary").addClass("btn-warning");
 	});
 	
 	$(".validate").live("click",function(){
-	
 		$("#"+$(this).attr('id')).hide('drop',{direction: "down"}, 500,function(){
+            var order = orders[parseInt($(this).attr("id").substr(1))];
+
+            order.status = 2;
+            updateOrder(2)
+
 			$("#"+$(this).attr('id')).remove();
 			$("#"+$(this).attr('id')).remove();
+
 		});
 
 	});
@@ -40,3 +48,12 @@ $(document).ready(function(){
 
 
 
+function updateOrder(order) {
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: 'resources/orders/'+order.id,
+        dataType: "json",
+        data: order.toJson()
+    });
+}

@@ -42,6 +42,11 @@ function Order()
             this.menus.push(menu);
         };
 
+    };
+
+    this.toJson = function()
+    {
+        return JSON.stringify(this);
     }
 }
 
