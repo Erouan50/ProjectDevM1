@@ -25,6 +25,7 @@ public interface OrderResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    void updateOrder(Order order);
+    @Produces(MediaType.APPLICATION_JSON)
+    Order updateOrder(Order order);
 
 }

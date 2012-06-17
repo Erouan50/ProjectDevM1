@@ -54,6 +54,16 @@ function updateOrder(order) {
         contentType: 'application/json',
         url: 'resources/orders/'+order.id,
         dataType: "json",
-        data: order.toJson()
+        data: order.toJson(),
+        error: function(data)
+        {
+            alert("error"+data);
+        },
+        success:function(data)
+        {
+            alert("success"+data);
+        }
+
+
     });
 }
