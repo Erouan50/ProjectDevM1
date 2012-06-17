@@ -35,7 +35,7 @@ $(document).ready(function(){
             var order = orders[parseInt($(this).attr("id").substr(1))];
 
             order.status = 2;
-            updateOrder(2)
+            updateOrder(order);
 
 			$("#"+$(this).attr('id')).remove();
 			$("#"+$(this).attr('id')).remove();
