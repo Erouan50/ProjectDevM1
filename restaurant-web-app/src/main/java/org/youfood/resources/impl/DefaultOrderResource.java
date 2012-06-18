@@ -29,8 +29,9 @@ public class DefaultOrderResource implements OrderResource {
 
     @Override
     public Order updateOrder(Order order) {
-        order.setStatus(order.getStatus()+1);
-        orderService.updateOrder(order);
+        Order orderBase = orderService.getOrderById(order.getId());
+        orderBase.setStatus(order.getStatus());
+        orderService.updateOrder(orderBase);
         return order;
     }
 

@@ -29,6 +29,7 @@ function Order()
     this.id;
     this.status;
     this.tableId;
+    this.creationDate;
     this.menus=new Array();
 
     this.toObject = function(json)
@@ -36,6 +37,7 @@ function Order()
         this.id = json['id'];
         this.status=json['status'];
         this.tableId=json['tableId'];
+        this.creationDate=json['creationDate'];
         for(var menuJson in json['menus']){
             var menu = new Menu();
             menu.ToObject(json['menus'][menuJson]);

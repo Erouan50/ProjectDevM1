@@ -3,11 +3,6 @@ var orders = Array();
 
 
 $(document).ready(function(){
-	/*$("#webService").click(function(){
-		$("#order").prepend('<input type="button" id="c'+id+'" class="button-order btn btn-large btn-primary" style="margin:5px;display:none;" value="Commande n°'+id+'"/>');
-		$("#c"+id).show('drop',{direction:"up"},1000);
-		id++;
-	});*/
 	
 	$(".button-order").live("click",function(){
 		$(this).effect("transfer",{to:$("#infoOrder")},500,function(){
@@ -21,7 +16,7 @@ $(document).ready(function(){
             }
 
 			var footer = '<div><input type="button" value="Validate this order." class="validate btn btn-success" id="'+$(this).attr("id")+'" /></div>';
-			var content ='<div id="'+$(this).attr("id")+'">'+message+' <br/> '+footer+' <br/></div>';
+			var content ='<div id="i'+$(this).attr("id")+'">'+message+' <br/> '+footer+' <br/></div>';
 			$("#infoOrder").html(content);
 
             order.status = 1;
@@ -36,10 +31,6 @@ $(document).ready(function(){
 
             order.status = 2;
             updateOrder(order);
-
-			$("#"+$(this).attr('id')).remove();
-			$("#"+$(this).attr('id')).remove();
-
 		});
 
 	});
@@ -55,13 +46,13 @@ function updateOrder(order) {
         url: 'resources/orders/'+order.id,
         dataType: "json",
         data: order.toJson(),
-        error: function(data)
-        {
-            alert("error"+data);
-        },
         success:function(data)
         {
-            alert("success"+data);
+            if(order.status==2)
+            {
+                $("#c"+order.id).remove();
+                $("#ic"+order.id).remove();
+            }
         }
 
 

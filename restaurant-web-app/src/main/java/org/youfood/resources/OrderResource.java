@@ -24,6 +24,7 @@ public interface OrderResource {
 
 
     @PUT
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     Order updateOrder(Order order);
