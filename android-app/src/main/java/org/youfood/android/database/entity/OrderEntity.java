@@ -6,7 +6,6 @@ import com.j256.ormlite.table.DatabaseTable;
 import org.interakting.inlab.activity.collection.IItem;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * User: GJean Date: 16/06/12 Time: 22:54
@@ -23,9 +22,9 @@ public class OrderEntity implements IItem {
     @DatabaseField(dataType = DataType.DATE)
     private Date creationDate;
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private List<MenuEntity> menuEntities;
+    private MenuEntity menuEntities;
 
-    public OrderEntity(int id, int tableId, int status, Date creationDate, List<MenuEntity> menuEntities) {
+    public OrderEntity(int id, int tableId, int status, Date creationDate, MenuEntity menuEntities) {
         super();
         this.id = id;
         this.tableId = tableId;
@@ -66,11 +65,11 @@ public class OrderEntity implements IItem {
         this.creationDate = creationDate;
     }
 
-    public List<MenuEntity> getMenuEntities() {
+    public MenuEntity getMenuEntities() {
         return menuEntities;
     }
 
-    public void setMenuEntities(List<MenuEntity> menuEntities) {
+    public void setMenuEntities(MenuEntity menuEntities) {
         this.menuEntities = menuEntities;
     }
 

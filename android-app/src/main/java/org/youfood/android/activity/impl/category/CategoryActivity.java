@@ -18,7 +18,7 @@ public class CategoryActivity extends YouFoodListItemActivity {
 
     @Override
     protected IProvider<IItem> createProvider() {
-        //final int parentActivity = this.initParent();
+        final int parentActivity = this.initParent();
 
         return new CategoryItemsProvider("@string/global.undefined", "@drawable/menu_icon_book");
     }

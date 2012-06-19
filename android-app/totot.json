@@ -1,0 +1,74 @@
+[
+    {
+        "id":100,
+        "name":"Omelette Du Jour",
+        "description":"ask your server for our daily selection with pommes frites & organic greens.",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":1,
+            "name":"French"
+        }
+    },
+    {
+        "id":101,
+        "name":"Parisian Omelette",
+        "description":"french ham & brie omelette with pommes frites & greens",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":1,
+            "name":"French"
+        }
+    },
+    {
+        "id":102,
+        "name":"Egg Sandwich",
+        "description":"scrambled egg, brie with ham or bacon served on baguette with pommes frites",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":1,
+            "name":"French"
+        }
+    },
+    {
+        "id":103,
+        "name":"Sushi",
+        "description":"7 pcs of sushi with 1 sushi roll",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":9,
+            "name":"Sushi"
+        }
+    },
+    {
+        "id":104,
+        "name":"Vegetable Sushi",
+        "description":"7 pcs of sushi with 1 vegetable sushi roll",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":9,
+            "name":"Sushi"
+        }
+    },
+    {
+        "id":105,
+        "name":"Sashimi",
+        "description":"8 kinds of sashimi",
+        "picturePath":null,
+        "availableStartDate":"2012-05-28",
+        "availableEndDate":"2012-06-04",
+        "category":{
+            "id":9,
+            "name":"Sushi"
+        }
+    }
+]

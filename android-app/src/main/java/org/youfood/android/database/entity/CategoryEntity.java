@@ -1,10 +1,11 @@
 package org.youfood.android.database.entity;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import org.interakting.inlab.activity.collection.IItem;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * User: GJean Date: 16/06/12 Time: 18:16
@@ -18,10 +19,13 @@ public class CategoryEntity implements IItem {
     @DatabaseField
     private String name;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private List<MenuEntity> menuEntities;
+    @ForeignCollectionField
+    private Collection<MenuEntity> menuEntities;
 
-    public CategoryEntity(String name, List<MenuEntity> menuEntities) {
+    public CategoryEntity() {
+    }
+
+    public CategoryEntity(String name, Collection<MenuEntity> menuEntities) {
 
         this.name = name;
         this.menuEntities = menuEntities;
@@ -46,7 +50,7 @@ public class CategoryEntity implements IItem {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public List<MenuEntity> getMenuEntities() {
+    public Collection<MenuEntity> getMenuEntities() {
         return menuEntities;
     }
 }

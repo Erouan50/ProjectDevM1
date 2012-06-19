@@ -28,6 +28,8 @@ public class MenuEntity implements IItem {
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private CategoryEntity category;
 
+    public MenuEntity() {
+    }
 
     public MenuEntity(int id, String name, String description, String picturePath, Date availableStartDate, Date availableEndDate, CategoryEntity category) {
 

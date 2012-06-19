@@ -31,8 +31,8 @@ public class DatabaseHelper extends AbstractDatabaseHelper {
     public Class<?>[] getClasses() {
         Class<?>[] classes = new Class<?>[4];
 
-        classes[0] = MenuEntity.class;
-        classes[1] = CategoryEntity.class;
+        classes[0] = CategoryEntity.class;
+        classes[1] = MenuEntity.class;
         classes[2] = OrderEntity.class;
 
         return classes;
