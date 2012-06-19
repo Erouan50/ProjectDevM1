@@ -65,12 +65,28 @@
                             <execution>
                                 <id>deploy</id>
                                 <phase>install</phase>
+								<configuration>
+                                    <address>subsystem=datasources,data-source=myDatasource</address>
+                                    <resource>
+                                        <enableResource>true</enableResource>
+                                        <properties>
+                                            <jndi-name>java:jboss/datasources/youfood-ds</jndi-name>
+                                            <enabled>true</enabled>
+                                            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</connection-url>
+                                            <driver-class>org.h2.Driver</driver-class>
+                                            <driver-name>h2</driver-name>
+                                            <security.user-name>sa</security.user-name>
+                                            <security.password>sa</security.password>
+                                            <pool-name>mypool</pool-name>
+                                        </properties>
+                                    </resource>
+                                </configuration>
                                 <goals>
                                     <goal>deploy</goal>
                                 </goals>
                             </execution>
 
-                            <!-- Add a data source -->
+                            <!-- Add a data source
                             <execution>
                                 <id>add-datasource</id>
                                 <phase>package</phase>
@@ -81,7 +97,7 @@
                                         <properties>
                                             <jndi-name>java:jboss/datasources/youfood-ds</jndi-name>
                                             <enabled>true</enabled>
-                                            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM '${project.basedir}/src/main/resources/org/youfood/sql/youfood_CATEGORIES.sql'\;RUNSCRIPT FROM '${project.basedir}/src/main/resources/org/youfood/sql/youfood_MENU.sql'</connection-url>
+                                            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</connection-url>
                                             <driver-class>org.h2.Driver</driver-class>
                                             <driver-name>h2</driver-name>
                                             <security.user-name>sa</security.user-name>
@@ -93,7 +109,7 @@
                                 <goals>
                                     <goal>add-resource</goal>
                                 </goals>
-                            </execution>
+                            </execution>-->
                         </executions>
                     </plugin>
                 </plugins>

@@ -1,11 +1,13 @@
 package org.youfood.android.activity.impl.loading;
 
+import android.util.Log;
 import android.widget.ProgressBar;
 import org.interakting.inlab.activity.ActivityManager;
 import org.youfood.android.R;
 import org.youfood.android.YouFood;
 import org.youfood.android.activity.YouFoodActivity;
 import org.youfood.android.activity.impl.category.CategoryActivity;
+import org.youfood.android.activity.webservice.impl.ClientWebService;
 import org.youfood.android.database.DatabaseHelper;
 
 /**
@@ -46,6 +48,14 @@ public class LoadingActivity extends YouFoodActivity {
     }
 
     public void initData() {
+
+        try {
+            new ClientWebService("http://10.19.241.191:8080/restaurant-web-app-0.1/resources/menus");
+
+        } catch (Exception e) {
+            //EventManager.getInstance().sendEvent(new ExceptionEvent(e));
+            Log.e("JSON", e.toString());
+        }
         this.progressBar.setProgress(50);
     }
 

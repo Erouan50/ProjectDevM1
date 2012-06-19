@@ -18,13 +18,15 @@ import java.util.List;
 public class CategoryItemsProvider extends YouFoodListItemProvider {
 
     private String name;
+    private String defaultImage;
 
-    private List<MenuEntity> menuEntities;
+    private MenuEntity menuEntities;
 
     public CategoryItemsProvider(String name, String defaultImage) {
         super(name, defaultImage);
 
         this.name = name;
+        this.defaultImage = defaultImage;
 
     }
 

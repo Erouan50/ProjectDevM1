@@ -7,7 +7,6 @@ import org.interakting.inlab.event.EventManager;
 import org.interakting.inlab.event.ExceptionEvent;
 import org.youfood.android.database.DatabaseHelper;
 import org.youfood.android.database.entity.CategoryEntity;
-import org.youfood.android.database.entity.MenuEntity;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,8 +19,6 @@ public class YouFoodListItemProvider extends DefaultListItemProvider {
     private String name;
 
     private String defaultImage;
-
-    private List<MenuEntity> menuEntities;
 
     public YouFoodListItemProvider(String name, String defaultImage) {
         this.name = name;
@@ -36,9 +33,6 @@ public class YouFoodListItemProvider extends DefaultListItemProvider {
         this.name = name;
     }
 
-    public List<MenuEntity> getMenuEntities() {
-        return menuEntities;
-    }
 
     public String getDefaultImage() {
         return defaultImage;
@@ -72,11 +66,10 @@ public class YouFoodListItemProvider extends DefaultListItemProvider {
     public IItem create()
 
     {
-        CategoryEntity entity = new CategoryEntity("", null);
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setName("");
 
-        entity.setName(this.name);
-
-        return entity;
+        return categoryEntity;
 
     }
 
