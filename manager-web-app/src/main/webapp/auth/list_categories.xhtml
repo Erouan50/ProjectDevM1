@@ -27,9 +27,14 @@
                     <f:facet name="header">
                         <h:outputText value="#{msg['views.list_categories.table.header.actions']}"/>
                     </f:facet>
-                    <h:commandLink id="submitTable" value="#{msg['views.list_categories.table.form.edit']}"
+                    <h:commandLink id="submitEditTable" value="#{msg['views.list_categories.table.form.edit']}"
                                    action="#{categoryController.editCategory(category)}">
                         <f:ajax execute="@form" render="@form :modalForm" onevent="showModal"/>
+                    </h:commandLink>
+                    <h:outputText value=" "/>
+                    <h:commandLink id="submitRemoveTable" value="#{msg['views.list_categories.table.form.remove']}"
+                                   action="#{categoryController.remove(category)}">
+                        <f:ajax execute="@form" render="@form"/>
                     </h:commandLink>
                 </h:column>
             </h:dataTable>

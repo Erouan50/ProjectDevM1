@@ -34,4 +34,8 @@ public class CategoryService {
     public void updateCategory(Category category) {
         em.merge(category);
     }
+
+    public void remove(Category category) {
+        em.remove(em.merge(category));
+    }
 }

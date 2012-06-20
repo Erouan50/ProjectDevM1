@@ -18,7 +18,6 @@ public class CategoryController {
     @EJB
     private CategoryService categoryService;
     private Category category;
-    private List<Category> categories;
     private List<SelectItem> categoryItems;
 
     public String addCategory() {
@@ -36,6 +35,10 @@ public class CategoryController {
         return null;
     }
 
+    public String remove(Category category) {
+        categoryService.remove(category);
+        return null;
+    }
 
     public Category getCategory() {
         if (category == null) {
@@ -45,14 +48,11 @@ public class CategoryController {
     }
 
     public List<Category> getCategories() {
-        if (categories == null) {
-            categories = categoryService.getAllCategories();
-        }
-        return categories;
+        return categoryService.getAllCategories();
     }
 
     public List<SelectItem> getCategoryItems() {
-        if (categoryItems == null){
+        if (categoryItems == null) {
             categoryItems = new ArrayList<SelectItem>();
             categoryItems.add(new SelectItem(null, "None"));
             for (Category category : getCategories()) {
