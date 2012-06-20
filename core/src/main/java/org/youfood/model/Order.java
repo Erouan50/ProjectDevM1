@@ -28,7 +28,7 @@ public class Order {
     private Integer status;
     @Temporal(TemporalType.DATE)
     private Date creationDate;
-    @LazyToOne(LazyToOneOption.FALSE)
+//    @LazyToOne(LazyToOneOption.FALSE)
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     private List<Menu> menus;
