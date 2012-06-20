@@ -6,6 +6,7 @@ import org.youfood.services.MenuService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
 @ManagedBean
+@ViewScoped
 public class MenuFilterController {
 
     @EJB

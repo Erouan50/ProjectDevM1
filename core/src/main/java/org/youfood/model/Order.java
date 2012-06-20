@@ -1,5 +1,10 @@
 package org.youfood.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -23,6 +28,8 @@ public class Order {
     private Integer status;
     @Temporal(TemporalType.DATE)
     private Date creationDate;
+    @LazyToOne(LazyToOneOption.FALSE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     private List<Menu> menus;
 

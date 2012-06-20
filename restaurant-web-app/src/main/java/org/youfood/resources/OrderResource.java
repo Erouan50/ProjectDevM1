@@ -4,6 +4,7 @@ import org.youfood.model.Order;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -29,4 +30,6 @@ public interface OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     Order updateOrder(Order order);
 
+    @POST
+    void addOrder(String order);
 }

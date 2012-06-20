@@ -61,9 +61,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <h:outputLabel for="categories" value="#{msg['views.manager_home.filter.form.categories']}" styleClass="control-label"/>
+                                <h:outputLabel for="categories"
+                                               value="#{msg['views.manager_home.filter.form.categories']}"
+                                               styleClass="control-label"/>
+
                                 <div class="controls">
-                                    <h:selectOneMenu id="categories" value="#{menuFilterController.category}" converter="#{categoryConverter}">
+                                    <h:selectOneMenu id="categories" value="#{menuFilterController.category}"
+                                                     converter="#{categoryConverter}">
                                         <f:selectItem itemValue="" itemLabel="None"/>
                                         <f:selectItems value="#{categoryController.categoryItems}"/>
                                     </h:selectOneMenu>
@@ -78,31 +82,72 @@
                     </h:form>
                 </div>
                 <div class="span10">
-                    <h:dataTable value="#{menuController.menus}" var="menu" styleClass="table">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{msg['views.manager_home.table.header.name']}"/>
-                            </f:facet>
-                            <h:outputText value="#{menu.name}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{msg['views.manager_home.table.header.startDate']}"/>
-                            </f:facet>
-                            <h:outputText value="#{menu.availableStartDate}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{msg['views.manager_home.table.header.endDate']}"/>
-                            </f:facet>
-                            <h:outputText value="#{menu.availableEndDate}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputText>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form id="table" prependId="false">
+                        <h:dataTable id="dataTable" value="#{menuController.menus}" var="menu" styleClass="table">
+                            <div>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['views.manager_home.table.header.name']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{menu.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['views.manager_home.table.header.startDate']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{menu.availableStartDate}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['views.manager_home.table.header.endDate']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{menu.availableEndDate}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['views.manager_home.table.header.action']}"/>
+                                    </f:facet>
+                                    <h:commandLink id="submitTable" value="#{msg['views.manager_home.table.form.details']}" action="#{menuController.details(menu)}">
+                                        <f:ajax execute="@form" render="@form :modalForm" onevent="showModal"/>
+                                    </h:commandLink>
+                                </h:column>
+                            </div>
+                        </h:dataTable>
+                    </h:form>
                 </div>
+            </div>
+        </div>
+        <div id="detailsModal" class="modal hide" style="display: none;">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">x</button>
+                <h3>
+                    <h:outputText value="#{msg['views.manager_home.modal.header.title']}"/>
+                </h3>
+            </div>
+            <h:form id="modalForm">
+                <div class="modal-body">
+                    <h2>
+                        <h:outputText value="#{msg['views.manager_home.modal.body.name']}"/>
+                    </h2>
+                    <p>
+                        <h:outputText value="#{menuController.menu.name}"/>
+                    </p>
+                    <h2>
+                        <h:outputText value="#{msg['views.manager_home.modal.body.details']}"/>
+                    </h2>
+                    <p>
+                        <h:outputText value="#{menuController.menu.description}"/>
+                    </p>
+                </div>
+            </h:form>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">
+                    <h:outputText value="#{msg['views.manager_home.modal.footer.close']}"/>
+                </a>
             </div>
         </div>
     </ui:define>
@@ -116,6 +161,11 @@
                     dateFormat:"dd/mm/yy"
                 });
             });
+            function showModal(data) {
+                if (data.status == "success") {
+                    $('#detailsModal').modal('show');
+                }
+            }
         </script>
     </ui:define>
 </ui:composition>

@@ -20,7 +20,10 @@ public class OrderService {
     @SuppressWarnings(value = "unchecked")
     public List<Order> getAllOrder() {
         Query query = em.createNamedQuery("findAllOrder");
-        return query.getResultList();
+        List<Order> orders = query.getResultList();
+        em.flush();
+        em.detach(orders);
+        return orders;
     }
 
     public Order getOrderById(Long id) {
@@ -29,7 +32,6 @@ public class OrderService {
         Order order = (Order) query.getSingleResult();
         em.detach(order);
         em.flush();
-
         return order;
     }
 

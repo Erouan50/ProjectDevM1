@@ -1,11 +1,18 @@
 package org.youfood.resources.impl;
 
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import org.youfood.model.Order;
 import org.youfood.resources.OrderResource;
+import org.youfood.services.NotificationSender;
 import org.youfood.services.OrderService;
+import org.youfood.utils.RabbitMQConfiguration;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -33,6 +40,11 @@ public class DefaultOrderResource implements OrderResource {
         orderBase.setStatus(order.getStatus());
         orderService.updateOrder(orderBase);
         return order;
+    }
+
+    @Override
+    public void addOrder(String order) {
+        new NotificationSender().sendOrder(order);
     }
 
 }

@@ -8,6 +8,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.AjaxBehaviorListener;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,22 +24,29 @@ import java.util.logging.Logger;
  * @author Antoine ROUAZE <antoine.rouaze AT zenika.com>
  */
 @ManagedBean
+@ViewScoped
 public class MenuController {
 
     @EJB
     private MenuService menuService;
     @ManagedProperty("#{menuFilterController}")
     private MenuFilterController menuFilterController;
-    private List<Menu> menus;
+    private DataModel<Menu> menus;
     private File picture;
+    private Menu menu;
 
-    public List<Menu> getMenus() {
+    public DataModel<Menu> getMenus() {
         if (menuFilterController.isFiltered()) {
-            menus = menuFilterController.getFilteredMenu();
+            menus = new ListDataModel<Menu>(menuFilterController.getFilteredMenu());
         } else {
-            menus = menuService.getAllMenu();
+            menus = new ListDataModel<Menu>(menuService.getAllMenu());
         }
         return menus;
+    }
+
+    public String details(Menu menu) {
+        this.menu = menu;
+        return null;
     }
 
     public void setMenuFilterController(MenuFilterController menuFilterController) {
@@ -47,5 +59,9 @@ public class MenuController {
 
     public void setPicture(File picture) {
         this.picture = picture;
+    }
+
+    public Menu getMenu() {
+        return menu;
     }
 }
