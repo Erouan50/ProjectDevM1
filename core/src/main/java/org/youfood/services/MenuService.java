@@ -30,10 +30,9 @@ public class MenuService {
         return em.find(Menu.class, id);
     }
 
-
     @SuppressWarnings(value = "unchecked")
     public List<Menu> getAllMenu() {
-        Query query = em.createNamedQuery("findAllList");
+        Query query = em.createNamedQuery("findAllMenu");
         return query.getResultList();
     }
 
@@ -67,6 +66,7 @@ public class MenuService {
             predicates.add(criteriaBuilder.equal(root.<Category>get("category"), category));
         }
         criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
+        criteriaQuery.orderBy(criteriaBuilder.desc(root.get("availableStartDate")));
         Query query = em.createQuery(criteriaQuery);
         if (startDate != null) {
             query = em.createQuery(criteriaQuery).setParameter(d, startDate, TemporalType.DATE);
@@ -81,9 +81,14 @@ public class MenuService {
         return query.getResultList();
     }
 
+    @SuppressWarnings(value = "unchecked")
     public List<Menu> getMenusByCategory(Category category) {
         Query query = em.createNamedQuery("findAllMenuByCategory");
         query.setParameter("category", category);
         return query.getResultList();
+    }
+
+    public void remove(Menu menu) {
+        em.remove(em.merge(menu));
     }
 }

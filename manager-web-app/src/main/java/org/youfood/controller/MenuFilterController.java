@@ -23,17 +23,21 @@ public class MenuFilterController {
     private Date startDate;
     private Date endDate;
     private Category category;
-    private List<Menu> filteredMenu;
+
+    public String filter() {
+        return null;
+    }
 
     public boolean isFiltered() {
-        return name != null || startDate != null || endDate != null || category != null;
+        if (name != null) {
+            return !name.isEmpty() ;
+        } else {
+            return startDate != null || endDate != null || category != null;
+        }
     }
 
     public List<Menu> getFilteredMenu() {
-        if (filteredMenu == null) {
-            filteredMenu = menuService.getFilteredMenu(name, startDate, endDate, category);
-        }
-        return filteredMenu;
+        return menuService.getFilteredMenu(name, startDate, endDate, category);
     }
 
     public String getName() {

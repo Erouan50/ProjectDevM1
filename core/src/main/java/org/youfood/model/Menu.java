@@ -11,9 +11,9 @@ import java.util.Date;
 @Entity
 @Table(name = "MENU")
 @NamedQueries({
-        @NamedQuery(name = "findAllList", query = "SELECT m FROM Menu AS m"),
-        @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate"),
-        @NamedQuery(name = "findAllMenuByCategory", query = "SELECT m FROM Menu AS m WHERE m.category = :category")
+        @NamedQuery(name = "findAllMenu", query = "SELECT m FROM Menu AS m ORDER BY m.availableStartDate DESC"),
+        @NamedQuery(name = "findAllMenuBetweenDates", query = "SELECT m FROM Menu AS m WHERE :date BETWEEN m.availableStartDate AND m.availableEndDate ORDER BY m.availableStartDate DESC"),
+        @NamedQuery(name = "findAllMenuByCategory", query = "SELECT m FROM Menu AS m WHERE m.category = :category ORDER BY m.availableStartDate DESC")
 })
 @DiscriminatorValue(value = "menu")
 @XmlRootElement

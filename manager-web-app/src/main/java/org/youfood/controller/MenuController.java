@@ -31,17 +31,20 @@ public class MenuController {
     private MenuService menuService;
     @ManagedProperty("#{menuFilterController}")
     private MenuFilterController menuFilterController;
-    private DataModel<Menu> menus;
     private File picture;
     private Menu menu;
 
     public DataModel<Menu> getMenus() {
         if (menuFilterController.isFiltered()) {
-            menus = new ListDataModel<Menu>(menuFilterController.getFilteredMenu());
+            return new ListDataModel<Menu>(menuFilterController.getFilteredMenu());
         } else {
-            menus = new ListDataModel<Menu>(menuService.getAllMenu());
+            return new ListDataModel<Menu>(menuService.getAllMenu());
         }
-        return menus;
+    }
+
+    public String remove(Menu menu) {
+        menuService.remove(menu);
+        return null;
     }
 
     public String details(Menu menu) {

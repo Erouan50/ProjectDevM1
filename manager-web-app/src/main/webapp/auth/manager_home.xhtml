@@ -68,14 +68,13 @@
                                 <div class="controls">
                                     <h:selectOneMenu id="categories" value="#{menuFilterController.category}"
                                                      converter="#{categoryConverter}">
-                                        <f:selectItem itemValue="" itemLabel="None"/>
                                         <f:selectItems value="#{categoryController.categoryItems}"/>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="form-actions">
                                 <h:commandButton id="submit" value="#{msg['views.manager_home.filter.form.submit']}"
-                                                 action="manager_home"
+                                                 action="#{menuFilterController.filter}"
                                                  styleClass="btn btn-primary"/>
                             </div>
                         </fieldset>
@@ -111,9 +110,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{msg['views.manager_home.table.header.action']}"/>
                                     </f:facet>
-                                    <h:commandLink id="submitTable" value="#{msg['views.manager_home.table.form.details']}" action="#{menuController.details(menu)}">
+                                    <h:commandLink id="submitDetailsTable"
+                                                   value="#{msg['views.manager_home.table.form.details']}"
+                                                   action="#{menuController.details(menu)}">
                                         <f:ajax execute="@form" render="@form :modalForm" onevent="showModal"/>
                                     </h:commandLink>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink id="submitRemoveTable"
+                                                                    value="#{msg['views.manager_home.table.form.remove']}"
+                                                                    action="#{menuController.remove(menu)}">
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandLink>
                                 </h:column>
                             </div>
                         </h:dataTable>
@@ -133,17 +140,21 @@
                     <h2>
                         <h:outputText value="#{msg['views.manager_home.modal.body.name']}"/>
                     </h2>
+
                     <p>
                         <h:outputText value="#{menuController.menu.name}"/>
                     </p>
+
                     <h2>
                         <h:outputText value="#{msg['views.manager_home.modal.body.details']}"/>
                     </h2>
+
                     <p>
                         <h:outputText value="#{menuController.menu.description}"/>
                     </p>
                 </div>
             </h:form>
+
             <div class="modal-footer">
                 <a href="#" class="btn" data-dismiss="modal">
                     <h:outputText value="#{msg['views.manager_home.modal.footer.close']}"/>
