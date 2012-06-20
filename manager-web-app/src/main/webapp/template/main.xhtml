@@ -70,6 +70,13 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <h:outputLink
+                                    value="#{facesContext.externalContext.request.contextPath}/auth/list_reports.xhtml"
+                                    rendered="#{userController.authenticated}">
+                                <h:outputText value="#{msg['templates.main.menu.reports']}"/>
+                            </h:outputLink>
+                        </li>
                     </ul>
                     <h:form style="display: inline;">
                         <ul class="nav pull-right">

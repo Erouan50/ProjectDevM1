@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: erouan
+  Date: 6/20/12
+  Time: 11:46 PM
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                template="../template/main.xhtml">
+    <ui:define name="title">
+        <h:outputText value="#{msg['views.list_reports.title']}"/>
+    </ui:define>
+    <ui:define name="content">
+        <h2><h:outputText value="#{msg['views.list_reports.body.title']}"/></h2>
+        <ul>
+            <li><a href="#{facesContext.externalContext.request.contextPath}/reports/report-20_06_2012.pdf">Rapport 20-06-2012</a></li>
+        </ul>
+    </ui:define>
+</ui:composition>
