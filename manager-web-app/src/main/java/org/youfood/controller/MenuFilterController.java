@@ -29,11 +29,7 @@ public class MenuFilterController {
     }
 
     public boolean isFiltered() {
-        if (name != null) {
-            return !name.isEmpty() ;
-        } else {
-            return startDate != null || endDate != null || category != null;
-        }
+        return startDate != null || endDate != null || category != null || name != null && !name.isEmpty();
     }
 
     public List<Menu> getFilteredMenu() {

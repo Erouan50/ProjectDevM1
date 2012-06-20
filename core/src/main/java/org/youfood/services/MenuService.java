@@ -2,6 +2,7 @@ package org.youfood.services;
 
 import org.youfood.model.Category;
 import org.youfood.model.Menu;
+import org.youfood.model.Menu_;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -46,31 +47,25 @@ public class MenuService {
 
     @SuppressWarnings(value = "unchecked")
     public List<Menu> getFilteredMenu(String name, Date startDate, Date endDate, Category category) {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Menu> criteriaQuery = criteriaBuilder.createQuery(Menu.class);
-        Root<Menu> root = criteriaQuery.from(Menu.class);
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Menu> q = cb.createQuery(Menu.class);
+        Root<Menu> menu = q.from(Menu.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        ParameterExpression<Date> d = criteriaBuilder.parameter(Date.class);
-        if (name != null) {
-            if (!name.isEmpty()) {
-                predicates.add(criteriaBuilder.equal(root.get("name"), name));
-            }
+        if (name != null && !name.isEmpty()) {
+            predicates.add(cb.equal(menu.get(Menu_.name), name));
         }
         if (startDate != null) {
-            predicates.add(criteriaBuilder.equal(root.<Date>get("availableStartDate"), d));
+            predicates.add(cb.equal(menu.<Date>get(Menu_.availableStartDate), startDate));
         }
         if (endDate != null) {
-            predicates.add(criteriaBuilder.equal(root.<Date>get("availableEndDate"), endDate));
+            predicates.add(cb.equal(menu.<Date>get(Menu_.availableEndDate), endDate));
         }
         if (category != null) {
-            predicates.add(criteriaBuilder.equal(root.<Category>get("category"), category));
+            predicates.add(cb.equal(menu.<Category>get(Menu_.category), category));
         }
-        criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
-        criteriaQuery.orderBy(criteriaBuilder.desc(root.get("availableStartDate")));
-        Query query = em.createQuery(criteriaQuery);
-        if (startDate != null) {
-            query = em.createQuery(criteriaQuery).setParameter(d, startDate, TemporalType.DATE);
-        }
+        q.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+        q.orderBy(cb.desc(menu.get(Menu_.availableStartDate)));
+        Query query = em.createQuery(q);
         return query.getResultList();
     }
 
