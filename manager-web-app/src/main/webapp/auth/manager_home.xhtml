@@ -46,7 +46,7 @@
 
                                 <div class="controls">
                                     <h:inputText id="startDate" value="#{menuFilterController.startDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
                                     </h:inputText>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
 
                                 <div class="controls">
                                     <h:inputText id="endDate" value="#{menuFilterController.endDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
                                     </h:inputText>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                         <h:outputText value="#{msg['views.manager_home.table.header.startDate']}"/>
                                     </f:facet>
                                     <h:outputText value="#{menu.availableStartDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
@@ -103,7 +103,7 @@
                                         <h:outputText value="#{msg['views.manager_home.table.header.endDate']}"/>
                                     </f:facet>
                                     <h:outputText value="#{menu.availableEndDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
